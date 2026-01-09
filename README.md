@@ -1,9 +1,109 @@
-The first time my personal website
+# Ahmad Nurhidayat - Personal Website
 
-This repository contains a code for building a web, where this code I got from my first lesson for web development at dicoding academy. this website buit with html, css and javascript. This web is certainly not perfect and will continue to strive to be perfected. Other gitHub users may also contribute to this web development. Pull request this repository and add what you think is missing. will definitely be merge by the owned this repository
+A modern personal website built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
-thank you for you'r attention. To contack me, you can call me in :
+## 🚀 Features
 
-instagram : https://www.instagram.com/nrhdytahmad_/
-twitter : https://twitter.com/ahmadkf
-. I am waiting for good news from you.
+- ✨ Modern dark theme design
+- 📱 Fully responsive
+- ⚡ Fast static site generation with Astro
+- 🎨 Styled with Tailwind CSS
+- 📝 Content collections for easy markdown management
+
+## 🛠️ Tech Stack
+
+- **Framework:** Astro
+- **Styling:** Tailwind CSS
+- **Content:** Markdown with Content Collections
+- **Deployment:** GitHub Pages
+
+## 📂 Project Structure
+
+```
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── PostCard.astro
+│   │   └── ProjectCard.astro
+│   ├── content/
+│   │   ├── config.ts           # Content collections schema
+│   │   ├── posts/              # Blog posts (markdown)
+│   │   │   ├── getting-started-devops.md
+│   │   │   ├── kubernetes-best-practices.md
+│   │   │   └── cicd-pipeline-automation.md
+│   │   └── projects/           # Projects (markdown)
+│   │       ├── kubernetes-automation.md
+│   │       ├── cloud-infrastructure.md
+│   │       └── monitoring-dashboard.md
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   ├── about.astro
+│   │   ├── index.astro
+│   │   ├── posts/
+│   │   │   ├── index.astro
+│   │   │   └── [slug].astro    # Dynamic post page
+│   │   └── projects/
+│   │       ├── index.astro
+│   │       └── [slug].astro    # Dynamic project page
+│   └── styles/
+│       └── global.css
+└── package.json
+```
+
+## 🧞 Commands
+
+| Command           | Action                                       |
+|-------------------|----------------------------------------------|
+| `npm install`     | Install dependencies                         |
+| `npm run dev`     | Start local dev server at `localhost:4321`   |
+| `npm run build`   | Build production site to `./dist/`           |
+| `npm run preview` | Preview build locally before deploying       |
+
+## 📝 Adding Content
+
+### Adding a New Post
+
+Create a new markdown file in `src/content/posts/`:
+
+```markdown
+---
+title: "Your Post Title"
+description: "A brief description of your post"
+date: 2024-01-20
+tags: ["tag1", "tag2"]
+---
+
+# Your Post Title
+
+Write your content here using markdown...
+```
+
+### Adding a New Project
+
+Create a new markdown file in `src/content/projects/`:
+
+```markdown
+---
+title: "Your Project Title"
+description: "A brief description of your project"
+year: "2024"
+tags: ["tag1", "tag2"]
+github: "https://github.com/username/repo"
+link: "https://your-demo-link.com"
+---
+
+# Your Project Title
+
+Write your project details here using markdown...
+```
+
+## 🚀 Deployment
+
+This site is automatically deployed to GitHub Pages when you push to the `main` branch via GitHub Actions.
+
+## 📄 License
+
+MIT License

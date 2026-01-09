@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+}
+
+const { title, description, date, slug } = Astro.props;
+---
+
+<a href={`/posts/${slug}`} class="card group block">
+  <article>
+    <time class="text-xs text-gray-600 dark:text-dark-500" datetime={date}>
+      {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+    </time>
+    <h3 class="font-medium text-gray-900 dark:text-dark-900 mt-1 group-hover:text-primary-600 dark:group-hover:text-accent transition-colors">
+      {title}
+    </h3>
+    <p class="text-gray-800 dark:text-dark-500 text-sm mt-2 line-clamp-2">
+      {description}
+    </p>
+  </article>
+</a>

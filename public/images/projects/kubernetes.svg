@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326ce5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e4a9c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="200"/>
+  <!-- Kubernetes wheel icon -->
+  <g transform="translate(200,100)" fill="white" opacity="0.9">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="white" stroke-width="4"/>
+    <circle cx="0" cy="0" r="8" fill="white"/>
+    <!-- Spokes -->
+    <g stroke="white" stroke-width="4">
+      <line x1="0" y1="-15" x2="0" y2="-32"/>
+      <line x1="13" y1="7" x2="28" y2="16"/>
+      <line x1="-13" y1="7" x2="-28" y2="16"/>
+      <line x1="13" y1="-7" x2="28" y2="-16"/>
+      <line x1="-13" y1="-7" x2="-28" y2="-16"/>
+      <line x1="0" y1="15" x2="0" y2="32"/>
+    </g>
+    <!-- Pods -->
+    <circle cx="0" cy="-45" r="8" fill="white"/>
+    <circle cx="38" cy="22" r="8" fill="white"/>
+    <circle cx="-38" cy="22" r="8" fill="white"/>
+    <circle cx="38" cy="-22" r="8" fill="white"/>
+    <circle cx="-38" cy="-22" r="8" fill="white"/>
+    <circle cx="0" cy="45" r="8" fill="white"/>
+  </g>
+</svg>
