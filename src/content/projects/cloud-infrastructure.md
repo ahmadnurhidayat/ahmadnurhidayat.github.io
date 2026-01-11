@@ -1,77 +1,41 @@
 ---
-title: "Cloud Infrastructure Setup"
-description: "Multi-cloud infrastructure setup using Terraform and Ansible for high availability and disaster recovery."
-year: "2023"
-tags: ["terraform", "ansible", "aws", "gcp", "infrastructure"]
+title: "Multi-Cloud Infrastructure Architecture"
+description: "Scalable and secure multi-cloud infrastructure setup (GCP, AWS, Vultr) using Terraform and Ansible."
+year: "2024"
+tags: ["Terraform", "Ansible", "GCP", "AWS", "Infrastructure"]
 github: "https://github.com/ahmadnurhidayat"
 image: "/images/projects/cloud.svg"
 pinned: true
 ---
 
-# Cloud Infrastructure Setup
+# Multi-Cloud Infrastructure Architecture
 
-A multi-cloud infrastructure project implementing high availability and disaster recovery patterns.
+Architecting and managing a resilient, cost-effective multi-cloud infrastructure across GCP, AWS, and Vultr.
 
 ## Project Overview
 
-This project establishes a robust cloud infrastructure that spans multiple cloud providers, ensuring:
+This project involves the design and implementation of a hybrid and multi-cloud infrastructure to support high-availability microservices. The focus was on creating modular Infrastructure as Code (IaC) to ensure consistency across Development, Staging, and Production environments.
 
-- **High Availability**: 99.9% uptime SLA
-- **Disaster Recovery**: Cross-region failover capability
-- **Cost Optimization**: Resource rightsizing and reserved capacity
-- **Security**: Defense in depth approach
+## Key Implementations
 
-## Infrastructure Components
+### Infrastructure as Code (IaC)
+-   **Terraform Modules**: Built modular, reusable Terraform architectures for **Compute Engine**, **GKE**, **Cloud SQL**, and **Instance Groups**.
+-   **Configuration Management**: Utilized **Ansible** for consistent server configuration and automated provisioning.
+-   **Scalability**: Enabled scalable multi-environment deployments (Dev, Staging, Prod) with consistent state management.
 
-### Terraform Modules
+### Cloud Platform Management
+-   **Multi-Cloud Strategy**: Managed resources across **Google Cloud Platform (GCP)**, **AWS**, and **Vultr**, choosing the best services for cost and performance.
+-   **Database Optimization**: Administered and optimized databases including **MongoDB**, **MySQL**, **PostgreSQL**, and **Redis**.
+-   **Cost Optimization**: Implemented cost-saving strategies such as rightsizing resources and analyzing storage usage, significantly reducing operational expenses.
 
-```hcl
-module "vpc" {
-  source = "./modules/vpc"
-  
-  cidr_block = "10.0.0.0/16"
-  availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  
-  tags = {
-    Environment = "production"
-    Project     = "cloud-infra"
-  }
-}
-
-module "kubernetes" {
-  source = "./modules/kubernetes"
-  
-  cluster_name = "production-cluster"
-  vpc_id       = module.vpc.vpc_id
-  subnet_ids   = module.vpc.private_subnet_ids
-  
-  node_groups = {
-    general = {
-      instance_types = ["t3.large"]
-      min_size       = 2
-      max_size       = 10
-    }
-  }
-}
-```
-
-## Key Achievements
-
-| Metric | Before | After |
-|--------|--------|-------|
-| Deployment Time | 2 hours | 15 minutes |
-| Infrastructure Cost | $5,000/mo | $3,500/mo |
-| Recovery Time | 4 hours | 30 minutes |
-| Uptime | 99.5% | 99.9% |
+### Security & Networking
+-   **Network Design**: Configured VPN tunnels, BGP routing, and DNS forwarding for secure inter-service communication.
+-   **Security**: Implemented **WAF**, rate limiting, and **SSL/TLS** to protect exposed services.
+-   **Backup**: Established automated backup and disaster recovery procedures.
 
 ## Technologies
 
-- **IaC**: Terraform, Ansible
-- **Cloud**: AWS, GCP
-- **Containers**: Kubernetes, Docker
-- **Monitoring**: Prometheus, Grafana
-- **CI/CD**: GitHub Actions
-
----
-
-*This is a sample project. Update with your actual project details.*
+-   **Cloud Providers**: GCP, AWS, Vultr
+-   **IaC**: Terraform, Terragrunt, Ansible
+-   **Databases**: MongoDB, MySQL, PostgreSQL, Redis
+-   **Security**: Cloudflare, IAM, WAF

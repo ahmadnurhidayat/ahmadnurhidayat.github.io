@@ -1,19 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const experience = [
+  {
+    role: "Cloud DevOps Engineer",
+    company: "Global Loyalty Indonesia",
+    period: "March 2025 - Present",
+    items: [
+      "Managed and deployed services across Kubernetes clusters, cloud platforms (GCP) and On Premise (VMWare and Proxmox), ensuring high availability, reliability, and cost-efficient infrastructure operations.",
+      "Implemented Cilium as the Container Networking Interface (CNI) for new Kubernetes clusters, enabling eBPF-powered networking, improved performance, enhanced observability, and advanced network policies.",
+      "Built modular, reusable Terraform architectures for Compute Engine, GKE, Cloud SQL, and Instance Groups, enabling scalable and consistent multi-environment deployments (dev, staging, prod).",
+      "Designed and implemented GitOps workflows using ArgoCD, including Blue-Green deployment strategies and migration from Ingress to Gateway API for improved traffic management and service resilience.",
+      "Integrated advanced observability tools by deploying a full Grafana Stack (Prometheus, Loki, Grafana Alloy, Fluent Bit) and ELK Stack, providing deep visibility into Kubernetes and GCE workloads.",
+      "Implemented OpenTelemetry auto-instrumentation for Java, Go applications to enable distributed tracing without modifying source code.",
+      "Enhanced Kubernetes reliability using Kubernetes Resource Recommender (KRR) and Robusta.dev for intelligent resource utilization and automated issue detection.",
+      "Conducted R&D on event-driven autoscaling with KEDA, evaluating scaling performance for messaging and background-processing workloads.",
+      "Improved CI/CD workflows by optimizing Jenkins pipelines to support multi-service deployments with environment-specific logic and dynamic routing configurations.",
+      "Built secure, lightweight container images using multi-stage Docker builds and standardized versioning for consistency and improved deployment speed.",
+      "Enabled secure internal system access by configuring VPN tunnels, BGP Method, DNS forwarding, and implemented WireGuard as a high-performance backup networking solution.",
+      "Strengthened system security by improving Kubernetes Secrets management, enforcing best practices, and validating secure configurations across observability, GitOps, and networking components.",
+      "Prepared technical documentation covering architecture, deployments, monitoring setups, and operational procedures to ensure team alignment and long-term maintainability."
+    ]
+  },
+  {
+    role: "DevOps Engineer",
+    company: "Solutionlabs Grup Indonesia",
+    period: "January 2024 - March 2025",
+    items: [
+      "Managed and deployed services across cloud platforms (GCP, AWS, Vultr) and on-premise infrastructure, ensuring high availability, optimal performance, and cost-efficiency.",
+      "Contributed to designing and building scalable, resilient microservices architectures in the cloud, conducting thorough analysis to ensure security, scalability, and high availability.",
+      "Led the migration of legacy applications to modern, containerized environments, orchestrating deployments with Kubernetes for improved scalability and management.",
+      "Administered and optimized databases (MongoDB, MySQL, PostgreSQL, Redis), ensuring seamless migrations and minimal downtime during updates or scaling activities.",
+      "Implemented Infrastructure as Code (IaC) using Terraform and Ansible to provision, configure, and manage cloud infrastructure efficiently and consistently.",
+      "Established automated CI/CD pipelines with GitHub Actions and GitLab CI to streamline deployments and enhance development workflows.",
+      "Deployed centralized monitoring solutions (Prometheus, Grafana, Loki, Node Exporter) to improve observability, optimize performance, and ensure system health across environments.",
+      "Documented infrastructure setups, technical procedures, and generated regular reports to track performance, project progress, and ensure compliance with best practices.",
+      "Conducted cost optimization strategies, including rightsizing cloud resources and analyzing storage usage, to reduce operational costs and maximize resource efficiency.",
+      "Continuously improved application and infrastructure performance by implementing security measures like WAF, rate limiting, SSL/TLS, access management, and proactive monitoring to protect against threats."
+    ]
+  },
+  {
+    role: "Cloud Computing",
+    company: "Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka",
+    period: "February 2023 - July 2023",
+    items: [
+      "Actively collaborated with the team to design, develop, and deploy the complete 'Laook' mobile application.",
+      "Contributed to the overall project success through effective communication, problem-solving, and teamwork.",
+      "Led the deployment of a high-performance machine learning model to Google Cloud Platform.",
+      "Successfully integrated Serverless using Cloud Run with FastAPI to create a robust and scalable API for real-time model predictions.",
+      "Optimized model performance and resource utilization within the GCP environment.",
+      "Ensured the reliability and security of the deployed ML infrastructure."
+    ]
+  },
+  {
+    role: "Assistant Lecturer of Cloud Computing",
+    company: "Universitas Jenderal Achmad Yani Yogyakarta",
+    period: "July 2023 - December 2023",
+    items: [
+      "Assisted lecturers in delivering cloud computing materials focused on Google Cloud Platform, including Virtual Machines, Networking, Storage, Databases, and Container services.",
+      "Supported students during hands-on labs and practical sessions, guiding them in deploying and configuring cloud infrastructure.",
+      "Helped explain complex cloud concepts such as IAM, VPC networking, autoscaling, load balancing, and container orchestration in a simplified and practical manner.",
+      "Reviewed, assessed, and corrected student assignments, lab results, and examinations for cloud computing courses.",
+      "Provided one-on-one mentoring to students who needed deeper understanding of GCP fundamentals or troubleshooting assistance.",
+      "Created supplementary learning materials such as lab guides, step-by-step documentation, and visual explanations to enhance student comprehension.",
+      "Assisted in developing practical cloud scenarios used for teaching, including VM provisioning, storage architecture, and basic CI/CD examples.",
+      "Monitored student progress and provided feedback to the main lecturer regarding common difficulties or areas needing reinforcement.",
+      "Ensured that all hands-on sessions followed best practices in cloud resource usage, security, and cost management.",
+      "Facilitated group discussions, encouraged collaboration, and supported peer learning during practical sessions."
+    ]
+  },
+  {
+    role: "User Interface Designer",
+    company: "Universitas Jenderal Achmad Yani Yogyakarta",
+    period: "September 2022 - November 2022",
+    items: [
+      "Created mobile application UI designs based on existing web application interfaces.",
+      "Defined system design structure to be used throughout the mobile design development.",
+      "Produced user interface flows and wireframes using Figma to establish foundational layouts.",
+      "Utilized prototyping within the SDLC to refine concepts and improve project outcomes.",
+      "Conducted user research and competitive analysis to understand user needs and benchmark industry standards.",
+      "Developed high-fidelity screens, visual styles, and component libraries for consistent UI.",
+      "Built and maintained a design system to ensure scalable, reusable UI patterns.",
+      "Collaborated with developers for smooth design handoff, providing specifications and assets.",
+      "Conducted usability testing and iterated designs based on user feedback.",
+      "Ensured accessibility, visual hierarchy, and brand consistency across all UI components.",
+      "Presented design concepts and prototypes to stakeholders for validation and improvement."
+    ]
+  },
+  {
+    role: "Network Support Engineer",
+    company: "Diskominfo Kab. Magelang",
+    period: "March 2019 - May 2019",
+    items: [
+      "Managed, implemented, and maintained the government network infrastructure (fiber optic, cable, wireless).",
+      "Configured routers, switches, and wireless devices for connectivity across multiple office sites.",
+      "Performed troubleshooting and repairs on fiber optic and wireless networks, including fusion splicing for damaged fiber lines.",
+      "Monitored network performance and responded to outages or service degradation.",
+      "Managed IP addressing, VLANs, and routing configurations to ensure efficient and secure network operations.",
+      "Conducted preventive and corrective maintenance on network devices and infrastructure.",
+      "Coordinated with ISPs and vendors for network installation, upgrades, and issue resolution.",
+      "Maintained detailed network documentation, diagrams, asset inventory, and configuration backups.",
+      "Supported internal users with connectivity issues to ensure uninterrupted public service operations."
+    ]
+  }
+];
+
 const certifications = [
-  "Cloud Platform Certifications",
-  "Kubernetes Administration",
-  "Linux System Administration"
+    {
+    name: "Google Cloud Certified - Associate Cloud Engineer",
+    issuer: "Google Cloud Platform",
+    date: "2025",
+    id: "1Xtuc2JCujkeZo6FxdI-agTs3uu2KiSAP"
+  },
+  {
+    name: "Alibaba Cloud Certified Associate",
+    issuer: "Alibaba Cloud",
+    date: "2025",
+    id: "1JmWAxJTA-Pp6pZ3cpKN4M7uHY_wPA1Np"
+  },
+  {
+    name: "MikroTik Certified Network Associate",
+    issuer: "Mikrotik",
+    date: "2024",
+    id: "1uZ4EWFpy5ZzHdLgSGDEoKJs290ftgelv"
+  },
+  {
+    name: "Database Design & Programming with SQL",
+    issuer: "Oracle",
+    date: "2023",
+    id: "1a2_yADbOvK6L-kbVLcaSBdPEe53SyY7v"
+  },
+  {
+    name: "Google IT Support",
+    issuer: "Baparekraf Digital Talent Kemenparekraf",
+    date: "2022",
+    id: "15h9uvxIFg4nMn1NeUwktqV-XF0-SXr38"
+  }
 ];
 
 const technicalStack = [
-  { category: "Cloud", items: "AWS, GCP, Azure" },
-  { category: "Containers", items: "Kubernetes, Docker" },
-  { category: "IaC", items: "Terraform, Ansible" },
-  { category: "CI/CD", items: "GitHub Actions, ArgoCD" },
-  { category: "Monitoring", items: "Prometheus, Grafana" },
-  { category: "Languages", items: "Bash, Python, Go" }
+  { category: "Cloud Platform", items: "GCP, AWS, Alibaba Cloud, Vultr" },
+  { category: "Virtualization", items: "VMWare, Proxmox" },
+  { category: "Container Virtualization", items: "Podman, Docker, Containerd" },
+  { category: "Container Orchestration", items: "Kubernetes, GKE, MicroK8s, Rancher" },
+  { category: "CI/CD", items: "Github Actions, Gitlab CI, Jenkins" },
+  { category: "Configuration Management", items: "Ansible" },
+  { category: "IaC", items: "Terraform, Terragrunt" },
+  { category: "Security", items: "Cloudflare, Zero Trust, IAM, SSL/TLS, WAF" },
+  { category: "Application Monitoring", items: "Grafana, Prometheus, Loki, Node Exporter, Elasticsearch, DataDog, NewRelic" },
+  { category: "Storage", items: "S3, Cloud Storage, MinIO" },
+  { category: "Scripting", items: "Bash/Shell Scripting" },
+  { category: "OS & Networking", items: "Linux Operating System, Virtualization, Networking" }
 ];
 ---
 
@@ -31,18 +168,108 @@ const technicalStack = [
       <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-3">Summary</h2>
       <div class="text-sm text-gray-800 dark:text-dark-500 space-y-3 leading-relaxed">
         <p>
-          I'm Ahmad Nurhidayat, a DevOps Engineer passionate about Cloud Computing, 
-          Container Orchestration, and Infrastructure Automation.
+          A highly driven Information Technology graduate from Universitas Jenderal Achmad Yani
+          Yogyakarta, specializing in Cloud DevOps Engineering. Experienced in architecting and
+          managing cloud infrastructure, containerized environments, and CI/CD pipelines with a
+          strong focus on reliability, scalability, and performance optimization.
         </p>
         <p>
-          My focus is building systems that are maintainable, secure, and cost-effective.
+          Proficient in leveraging leading technologies including Google Cloud Platform (GCP),
+          Kubernetes, Terraform, and Grafana Stack to deliver resilient and observable systems. Skilled
+          in Cloud Computing, Containerization, Orchestration, Infrastructure as Code (IaC), and
+          Monitoring & Observability.
         </p>
+        <p>
+          Demonstrated success in implementing DevOps best practices, automating workflows, and
+          enabling intelligent monitoring systems to ensure operational excellence across production
+          and non-production environments. Recognized for analytical problem-solving,
+          cross-functional collaboration, and a commitment to continuous learning.
+        </p>
+        <p>
+          Passionate about innovation and automation, with a goal to design modern, efficient, and
+          secure cloud-native solutions that drive business value and operational efficiency.
+        </p>
+      </div>
+    </div>
+
+    <!-- Certs -->
+    <div class="card mb-6">
+      <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-4">Certifications</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {certifications.map((cert) => (
+          <div class="border border-gray-200 dark:border-dark-700 rounded-lg p-4 flex flex-col gap-3 hover:border-primary-500 dark:hover:border-accent transition-colors">
+            <div class="aspect-video w-full bg-gray-100 dark:bg-dark-800 rounded-md overflow-hidden relative group">
+              <iframe
+                src={`https://drive.google.com/file/d/${cert.id}/preview`}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                loading="lazy"
+                title={`${cert.name} Preview`}
+              ></iframe>
+              <!-- Overlay for click to view -->
+              <a 
+                href={`https://drive.google.com/file/d/${cert.id}/view`}
+                target="_blank"
+                rel="noopener"
+                class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
+              >
+                <span class="sr-only">View PDF</span>
+              </a>
+            </div>
+            
+            <div class="flex flex-col gap-1">
+              <h3 class="font-medium text-sm text-gray-900 dark:text-dark-900 leading-tight">
+                <a href={`https://drive.google.com/file/d/${cert.id}/view`} target="_blank" rel="noopener" class="hover:text-primary-600 dark:hover:text-accent transition-colors">
+                  {cert.name}
+                </a>
+              </h3>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-dark-400">
+                <span>{cert.issuer}</span>
+                <span>{cert.date}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="card mb-6">
+      <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-4">Experience</h2>
+      <div class="space-y-8 pl-2">
+        {experience.map((job) => (
+          <div class="relative pl-6 border-l border-gray-200 dark:border-dark-700 last:border-0 pb-8 last:pb-0">
+            <!-- Timeline Dot -->
+            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary-500 dark:bg-accent ring-4 ring-white dark:ring-dark-950" />
+            
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+              <h3 class="font-semibold text-gray-900 dark:text-dark-900">{job.role}</h3>
+              <span class="text-xs font-mono text-gray-500 dark:text-dark-400 mt-1 sm:mt-0">
+                {job.period}
+              </span>
+            </div>
+            
+            <div class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-dark-400 mb-4">
+              {job.company}
+            </div>
+            
+            <ul class="space-y-2">
+              {job.items.map((item) => (
+                <li class="text-sm text-gray-700 dark:text-dark-300 flex items-start gap-3">
+                  <span class="mt-1.5 w-1 h-1 rounded-full bg-gray-400 dark:bg-dark-500 flex-shrink-0" />
+                  <span class="leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
 
     <!-- Stack -->
     <div class="card mb-6">
-      <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-4">Stack</h2>
+      <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-4">Technical Stack</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
         {technicalStack.map(({ category, items }) => (
           <div>
@@ -51,19 +278,6 @@ const technicalStack = [
           </div>
         ))}
       </div>
-    </div>
-
-    <!-- Certs -->
-    <div class="card mb-6">
-      <h2 class="font-medium text-gray-900 dark:text-dark-900 mb-3">Certifications</h2>
-      <ul class="space-y-1.5">
-        {certifications.map((cert) => (
-          <li class="text-sm text-gray-800 dark:text-dark-500 flex items-center gap-2">
-            <span class="text-primary-600 dark:text-accent text-xs">✓</span>
-            {cert}
-          </li>
-        ))}
-      </ul>
     </div>
 
     <!-- Contact -->

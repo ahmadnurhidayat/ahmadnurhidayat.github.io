@@ -1,82 +1,47 @@
 ---
-title: "Kubernetes Deployment Automation"
-description: "Automated deployment pipeline for Kubernetes applications using GitOps principles with ArgoCD and Helm."
-year: "2024"
-tags: ["kubernetes", "gitops", "argocd", "helm"]
+title: "GitOps & Kubernetes Automation with Cilium"
+description: "Advanced Kubernetes orchestration using ArgoCD for GitOps, Cilium CNI for networking, and automated workflows."
+year: "2025"
+tags: ["Kubernetes", "GitOps", "ArgoCD", "Cilium", "Helm"]
 github: "https://github.com/ahmadnurhidayat"
 image: "/images/projects/kubernetes.svg"
 pinned: true
 ---
 
-# Kubernetes Deployment Automation
+# GitOps & Kubernetes Automation
 
-An automated deployment pipeline for Kubernetes applications using GitOps principles.
+Implementing advanced GitOps workflows and high-performance container networking for scalable Kubernetes clusters.
 
-## Overview
+## Project Overview
 
-This project implements a fully automated deployment pipeline that:
+This project focuses on architecting and managing Kubernetes clusters across GCP and on-premise environments (VMWare, Proxmox). The core objective was to enhance reliability, scalability, and security through automation and modern networking solutions.
 
-- Uses **ArgoCD** for GitOps-based continuous deployment
-- Leverages **Helm** charts for application packaging
-- Implements **Blue-Green** and **Canary** deployment strategies
-- Provides automatic rollback on failure
+## Key Implementations
 
-## Architecture
+### GitOps with ArgoCD
+-   **Workflow Design**: Designed and implemented GitOps workflows using ArgoCD to automate application deployment.
+-   **Deployment Strategies**: Implemented Blue-Green deployment strategies to ensure zero-downtime updates.
+-   **Traffic Management**: Successfully migrated traffic management from standard Ingress to the modern **Gateway API** for better service resilience and control.
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   GitHub    │────▶│   ArgoCD    │────▶│ Kubernetes  │
-│ Repository  │     │   Server    │     │   Cluster   │
-└─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │
-       │                   ▼                   │
-       │           ┌─────────────┐             │
-       └──────────▶│    Helm     │─────────────┘
-                   │   Charts    │
-                   └─────────────┘
-```
+### Cilium CNI Integration
+-   **eBPF Networking**: Deployed **Cilium** as the Container Networking Interface (CNI) for new clusters.
+-   **Performance & Security**: Leveraged eBPF for high-performance networking, improved load balancing, and advanced network policies.
+-   **Observability**: Enhanced network visibility using Cilium's Hubble (if applicable) and eBPF-based metrics.
 
-## Key Features
+### Reliability & Security
+-   **Resource Optimization**: Integrated **Kubernetes Resource Recommender (KRR)** and **Robusta.dev** for intelligent resource utilization and automated issue detection.
+-   **Secrets Management**: Strengthened security by enforcing best practices in Kubernetes Secrets management.
+-   **Container Security**: Built secure, lightweight container images using multi-stage Docker builds.
 
-### GitOps Workflow
+## Architecture Highlights
 
-- All changes tracked in Git
-- Declarative infrastructure
-- Automated sync and reconciliation
-- Audit trail for all deployments
+-   **Multi-Environment**: Consistent deployment capability across Dev, Staging, and Production.
+-   **Network Security**: WireGuard implementation for secure internal system access and backup networking.
+-   **Automation**: Jenkins pipeline optimization for multi-service deployments with dynamic routing.
 
-### Helm Chart Structure
+## Technologies
 
-```
-my-app/
-├── Chart.yaml
-├── values.yaml
-├── values-staging.yaml
-├── values-production.yaml
-└── templates/
-    ├── deployment.yaml
-    ├── service.yaml
-    ├── ingress.yaml
-    └── configmap.yaml
-```
-
-### Deployment Features
-
-| Feature | Description |
-|---------|-------------|
-| Auto-sync | Automatic deployment on Git push |
-| Health checks | Readiness and liveness probes |
-| Rollback | Automatic rollback on failure |
-| Notifications | Slack/Email on deploy status |
-
-## Technologies Used
-
-- Kubernetes
-- ArgoCD
-- Helm
-- GitHub Actions
-- Prometheus + Grafana
-
----
-
-*This is a sample project. Update with your actual project details.*
+-   **Orchestration**: Kubernetes (GKE, On-Prem)
+-   **GitOps**: ArgoCD
+-   **Networking**: Cilium (eBPF), Gateway API
+-   **Security**: WireGuard, KRR, Robusta

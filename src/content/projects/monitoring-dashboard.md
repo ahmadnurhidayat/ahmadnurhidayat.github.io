@@ -1,62 +1,40 @@
 ---
-title: "Monitoring Dashboard"
-description: "Comprehensive monitoring solution using Prometheus, Grafana, and custom alerting for full observability."
-year: "2023"
-tags: ["prometheus", "grafana", "monitoring", "observability"]
+title: "Advanced Observability Stack"
+description: "End-to-end observability pipeline using Grafana Stack (Loki, Prometheus, Tempo) and OpenTelemetry."
+year: "2025"
+tags: ["Prometheus", "Grafana", "Loki", "OpenTelemetry", "Observability"]
 github: "https://github.com/ahmadnurhidayat"
 image: "/images/projects/monitoring.svg"
 pinned: false
 ---
 
-# Monitoring Dashboard
+# Advanced Observability Stack
 
-A comprehensive monitoring and observability solution for cloud-native applications.
+Building a comprehensive observability platform to provide deep visibility into Kubernetes workloads and application performance.
 
-## Overview
+## Project Overview
 
-This project implements a full observability stack that provides:
+This project implemented a full-stack observability solution by deploying a cohesive **Grafana Stack** (Prometheus, Loki, Grafana Alloy, Fluent Bit) and **ELK Stack**. The goal was to unify logs, metrics, and traces to enable faster incident response and better system understanding.
 
-- **Metrics Collection**: Prometheus-based metric gathering
-- **Visualization**: Beautiful Grafana dashboards
-- **Alerting**: PagerDuty and Slack integration
-- **Log Aggregation**: Centralized logging with Loki
+## Key Implementations
 
-## Architecture
+### Full-Stack Monitoring
+-   **Metric Collection**: Scaled **Prometheus** for high-cardinality metric collection from Kubernetes components and microservices.
+-   **Log Aggregation**: Deployed **Loki** and **Fluent Bit** for efficient, label-based log aggregation and querying.
+-   **Visualization**: Built comprehensive **Grafana** dashboards to visualize cluster health, application performance, and network traffic.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Observability Stack                   │
-│                                                          │
-│  ┌──────────┐    ┌──────────┐    ┌──────────┐          │
-│  │Prometheus│───▶│ Grafana  │───▶│ Alerting │          │
-│  │  Server  │    │Dashboard │    │ Manager  │          │
-│  └────┬─────┘    └──────────┘    └────┬─────┘          │
-│       │                               │                 │
-│       ▼                               ▼                 │
-│  ┌──────────┐                   ┌──────────┐           │
-│  │  Node    │                   │  Slack   │           │
-│  │Exporters │                   │ PagerDuty│           │
-│  └──────────┘                   └──────────┘           │
-└─────────────────────────────────────────────────────────┘
-```
+### Distributed Tracing
+-   **Auto-Instrumentation**: Implemented **OpenTelemetry** auto-instrumentation for **Java** and **Go** applications.
+-   **Tracing**: Enabled distributed tracing to track requests across microservices without modifying source code, identifying latency bottlenecks effectively.
 
-## Key Features
+### Advanced Features
+-   **Alerting**: Configured intelligent alerting rules to detect anomalies and reduce alert fatigue.
+-   **Collector Migration**: Migrated data collection pipelines to **Grafana Alloy** for a more unified telemetry experience.
 
-| Feature | Description |
-|---------|-------------|
-| Real-time Metrics | Sub-second metric collection |
-| Custom Dashboards | Tailored to team needs |
-| Smart Alerting | Reduce alert fatigue |
-| Historical Data | 90 days retention |
+## Technologies
 
-## Stack Components
-
-- **Prometheus**: Metrics collection
-- **Grafana**: Visualization
-- **Alertmanager**: Alert routing
-- **Loki**: Log aggregation
-- **Node Exporter**: System metrics
-
----
-
-*This is a sample project. Update with your actual project details.*
+-   **Visualization**: Grafana
+-   **Metrics**: Prometheus, Node Exporter
+-   **Logs**: Loki, Fluent Bit, ELK Stack
+-   **Tracing**: OpenTelemetry, Tempo
+-   **Collector**: Grafana Alloy
