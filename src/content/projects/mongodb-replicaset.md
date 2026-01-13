@@ -12,6 +12,8 @@ pinned: false
 
 A comprehensive implementation guide for configuring MongoDB replica sets to ensure **high availability**, **redundancy**, and **data consistency** for your database infrastructure.
 
+![MongoDB Replicaset](/images/projects/mongodb-replicaset.svg)
+
 ## Project Overview
 
 This project documents the complete process of setting up a MongoDB replica set from scratch. A replica set in MongoDB is a group of `mongod` instances that maintain the same data set, providing redundancy and increasing data availability.

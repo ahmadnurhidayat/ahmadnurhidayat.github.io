@@ -4,13 +4,15 @@ description: "Step-by-step guide for migrating MinIO object storage data between
 year: "2025"
 tags: ["MinIO", "Object Storage", "Data Migration", "S3", "DevOps"]
 github: "https://github.com/ahmadnurhidayat"
-image: "/images/projects/minio.svg"
+image: "/images/projects/minio-migration.svg"
 pinned: false
 ---
 
 # MinIO Data Migration Guide
 
 A comprehensive guide for migrating **MinIO data service** from one server to another, ensuring minimal downtime and complete data integrity throughout the process.
+
+![Minio Migration](/images/projects/minio-migration.svg)
 
 ## Project Overview
 
