@@ -58,7 +58,7 @@
 
   /* Minimal card style */
   .card {
-    @apply bg-white dark:bg-surface/50 border border-gray-200 dark:border-border/30 rounded-lg p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50;
+    @apply bg-white dark:bg-surface/50 border border-gray-200 dark:border-border/40 rounded-xl p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg;
   }
 
   /* Clean buttons */

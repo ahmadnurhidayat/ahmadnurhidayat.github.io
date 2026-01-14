@@ -16,7 +16,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
       </p>
     </div>
 
-    <div class="grid gap-3">
+    <div class="grid gap-4">
       {posts.map((post) => (
         <PostCard 
           title={post.data.title}

@@ -12,7 +12,7 @@ const { title, description, year, slug, image, pinned = false } = Astro.props;
 const hasImage = image && image.length > 0;
 ---
 
-<a href={`/projects/${slug}`} class="group block bg-white dark:bg-surface/30 border border-gray-200 dark:border-border/20 rounded-lg overflow-hidden transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50">
+<a href={`/projects/${slug}`} class="group block bg-white dark:bg-surface/30 border border-gray-200 dark:border-border/40 rounded-xl overflow-hidden transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg">
   <!-- Image Section -->
   <div class="relative h-40 overflow-hidden bg-gray-100 dark:bg-dark-100">
     {hasImage ? (
