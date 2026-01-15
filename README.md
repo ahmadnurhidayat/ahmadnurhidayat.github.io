@@ -30,13 +30,9 @@ A modern personal website built with [Astro](https://astro.build/) and [Tailwind
 │   ├── content/
 │   │   ├── config.ts           # Content collections schema
 │   │   ├── posts/              # Blog posts (markdown)
-│   │   │   ├── getting-started-devops.md
-│   │   │   ├── kubernetes-best-practices.md
-│   │   │   └── cicd-pipeline-automation.md
+│   │   │   └── [posts].md
 │   │   └── projects/           # Projects (markdown)
-│   │       ├── kubernetes-automation.md
-│   │       ├── cloud-infrastructure.md
-│   │       └── monitoring-dashboard.md
+│   │       └── [projects].md
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/
@@ -91,8 +87,8 @@ title: "Your Project Title"
 description: "A brief description of your project"
 year: "2024"
 tags: ["tag1", "tag2"]
-github: "https://github.com/username/repo"
-link: "https://your-demo-link.com"
+github: "https://github.com/ahmadnurhidayat/repo"
+link: "https://link.com"
 ---
 
 # Your Project Title
