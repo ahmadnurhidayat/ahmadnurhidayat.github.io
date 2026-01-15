@@ -152,7 +152,7 @@ const {
       const currentPath = window.location.pathname;
       document.querySelectorAll('.nav-link').forEach(link => {
         const href = link.getAttribute('href');
-        if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
+        if (href && (href === currentPath || (href !== '/' && currentPath.startsWith(href)))) {
           link.classList.add('active');
         }
       });

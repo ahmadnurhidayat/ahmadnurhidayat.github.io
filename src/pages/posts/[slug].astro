@@ -72,6 +72,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     const mermaidCodeBlocks = document.querySelectorAll('pre > code.language-mermaid, pre.mermaid, div.mermaid');
     
     if (mermaidCodeBlocks.length > 0) {
+      // @ts-ignore
       const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
       
       mermaid.initialize({ 
@@ -95,7 +96,9 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         div.classList.add('mermaid');
         div.textContent = content;
         
-        pre.replaceWith(div);
+        if (pre) {
+          pre.replaceWith(div);
+        }
       }
       
       await mermaid.run({
@@ -111,13 +114,17 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 
     if (images.length > 0 && lightbox && lightboxImg && closeBtn) {
       images.forEach(img => {
-        img.style.cursor = 'zoom-in';
+        if (img instanceof HTMLElement) {
+          img.style.cursor = 'zoom-in';
+        }
         img.addEventListener('click', () => {
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.classList.remove('hidden');
-          lightbox.classList.add('flex');
-          document.body.style.overflow = 'hidden'; // Prevent scrolling
+          if (lightboxImg instanceof HTMLImageElement && img instanceof HTMLImageElement) {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+          }
         });
       });
 
@@ -125,7 +132,9 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         lightbox.classList.add('hidden');
         lightbox.classList.remove('flex');
         document.body.style.overflow = ''; // Restore scrolling
-        lightboxImg.src = '';
+        if (lightboxImg instanceof HTMLImageElement) {
+          lightboxImg.src = '';
+        }
       };
 
       closeBtn.addEventListener('click', closeLightbox);

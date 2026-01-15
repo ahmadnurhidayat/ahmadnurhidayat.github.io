@@ -91,7 +91,9 @@ const { Content } = await project.render();
 
       if (images.length > 0 && lightbox && lightboxImg && closeBtn) {
         images.forEach((img) => {
+        if (img instanceof HTMLElement) {
           img.style.cursor = 'zoom-in';
+        }
           img.addEventListener('click', () => {
              // Type assertion for HTMLImageElement
             const src = (img as HTMLImageElement).src;
