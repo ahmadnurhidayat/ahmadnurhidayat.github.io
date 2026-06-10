@@ -34,7 +34,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: TruffleHog OSS Scan
+      - name: TruffleHog OSS Scan (PR diff)
+        if: github.event_name == 'pull_request'
         id: scan
         uses: trufflesecurity/trufflehog@v3.95.5
         with:
@@ -42,6 +43,26 @@ jobs:
           head: HEAD
           extra_args: --only-verified --json
         continue-on-error: true
+
+      - name: TruffleHog OSS Scan (push — latest commit)
+        if: github.event_name != 'pull_request'
+        id: scan_push
+        run: |
+          docker run --rm -v "$(pwd)":/src trufflesecurity/trufflehog:3.95.5 \
+            filesystem /src --only-verified --json > trufflehog-report.json 2>&1 || true
+        continue-on-error: true
+
+      - name: Check for findings
+        id: check
+        if: always()
+        run: |
+          if [ -f trufflehog-report.json ] && [ -s trufflehog-report.json ]; then
+            echo "CREDENTIALS FOUND — see artifact"
+            echo "has_findings=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Clean — no verified credentials"
+            echo "has_findings=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Upload scan report
         if: always()
@@ -57,21 +78,20 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const outcome = '${{ steps.scan.outcome }}';
+            const hasFindings = '${{ steps.check.outputs.has_findings }}' === 'true';
             const marker = '<!-- trufflehog-scan-result -->';
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner, repo: context.repo.repo,
               issue_number: context.issue.number,
             });
             const existing = comments.find(c => c.body.includes(marker));
-            const passed = outcome !== 'failure';
             const body = [
               marker,
-              `## ${passed ? '✅' : '🚨'} TruffleHog — ${passed ? 'No Verified Secrets' : 'Secrets Detected'}`,
+              `## ${hasFindings ? '🚨' : '✅'} TruffleHog — ${hasFindings ? 'Secrets Detected' : 'No Verified Secrets'}`,
               '',
-              passed
-                ? 'No verified credentials found in commit history.'
-                : '> **Action Required:** Verified credentials detected. Review the `trufflehog-report` artifact and rotate all exposed keys immediately.',
+              hasFindings
+                ? '> **Action Required:** Verified credentials detected. Review the `trufflehog-report` artifact and rotate all exposed keys immediately.'
+                : 'No verified credentials found in commit history.',
               '',
               `**Run:** [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
             ].join('\n');
@@ -88,7 +108,7 @@ jobs:
             }
 
       - name: Enforce scan result
-        if: steps.scan.outcome == 'failure'
+        if: steps.check.outputs.has_findings == 'true'
         run: |
           echo "::error::TruffleHog detected active credentials. Check the artifact report."
           exit 1
