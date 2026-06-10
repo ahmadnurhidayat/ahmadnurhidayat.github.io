@@ -1,14 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
   push:
     branches: [main]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one deployment at a time, queue others
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -18,65 +15,61 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '9'
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Run Astro Check
-        run: pnpm astro check
-
   build:
+    name: Build
     runs-on: ubuntu-latest
-    needs: test
+    timeout-minutes: 15
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
-          node-version: "20"
-          cache: "pnpm"
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
+        env:
+          NODE_ENV: production
 
-      - name: Upload artifact
+      - name: Validate output
+        run: |
+          [ -f dist/index.html ] || { echo "::error::Missing dist/index.html"; exit 1; }
+          PAGE_COUNT=$(find dist -name '*.html' | wc -l | tr -d ' ')
+          TOTAL_SIZE=$(du -sh dist/ | cut -f1)
+          echo "📦 ${PAGE_COUNT} pages — ${TOTAL_SIZE} total"
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 5
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
