@@ -3,6 +3,7 @@ title: "Repository Naming Conventions Best Practices"
 description: "A comprehensive guide to establishing clear and consistent naming conventions for repositories to enhance collaboration and code discoverability."
 date: 2025-01-13
 tags: ["git", "devops", "best-practices", "collaboration"]
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/convention/repository-naming"
 ---
 
 # Repository Naming Conventions Best Practices

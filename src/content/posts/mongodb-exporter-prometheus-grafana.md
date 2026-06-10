@@ -3,6 +3,7 @@ title: "MongoDB Monitoring with Prometheus and Grafana"
 description: "Complete guide to setting up mongodb_exporter for monitoring MongoDB performance and health using Prometheus and Grafana."
 date: 2025-01-14
 tags: ["mongodb", "prometheus", "grafana", "monitoring", "devops"]
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/mongodb-exporter"
 ---
 
 # MongoDB Monitoring with Prometheus and Grafana

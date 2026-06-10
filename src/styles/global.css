@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 @layer base {
   html {
@@ -10,113 +10,162 @@
   }
 
   body {
-    @apply font-sans antialiased;
-    @apply text-gray-900 dark:text-dark-600;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    @apply antialiased bg-white text-black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-semibold text-gray-900 dark:text-dark-900;
+  .dark body,
+  .dark {
+    @apply bg-black text-white;
+  }
+
+  /* Display face — weight 700 only, sentence-case, never letter-spaced */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    @apply text-black dark:text-white;
+    letter-spacing: 0;
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-all duration-250;
   }
 
   ::selection {
-    @apply bg-primary-600/30 text-white;
+    background: #EEF3FE;
+    color: #276EF1;
   }
 
-  /* Minimal scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
+  .dark ::selection {
+    background: rgba(39, 110, 241, 0.3);
+    color: #8BADF8;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
+  /* Scrollbar — minimal */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-400 dark:bg-dark-400/50 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-500 dark:bg-dark-500;
+    @apply bg-ink-light dark:bg-white/20 rounded-full;
   }
 }
 
 @layer components {
+  /* ─── Pill Buttons — THE signature shape ─── */
 
-  /* Minimal gradient text */
-  .gradient-text {
-    @apply text-primary-600 dark:text-accent;
-  }
-
-  /* Minimal card style */
-  .card {
-    @apply bg-white dark:bg-surface/50 border border-gray-200 dark:border-border/40 rounded-xl p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg;
-  }
-
-  /* Clean buttons */
+  /* Primary: black pill, white text — the only conversion CTA */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-lg font-medium text-sm transition-all duration-200 hover:bg-primary-700;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-black text-white rounded-pill;
+    @apply transition-all duration-250;
+    @apply hover:bg-primary-elevated active:scale-[0.97];
+    @apply dark:bg-white dark:text-black dark:hover:bg-neutral-200;
   }
 
+  /* Secondary: white pill, black text */
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-gray-900/10 dark:border-border/50 text-gray-900 dark:text-dark-600 rounded-lg font-medium text-sm transition-all duration-200 hover:border-primary-600 dark:hover:border-accent hover:text-primary-600 dark:hover:text-accent;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-black rounded-pill;
+    @apply transition-all duration-250;
+    @apply hover:bg-canvas-soft active:scale-[0.97];
+    @apply dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700;
   }
 
-  /* Minimal nav links */
+  /* Subtle: gray pill — tertiary actions */
+  .btn-subtle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-canvas-soft text-black rounded-pill;
+    @apply transition-all duration-250;
+    @apply hover:bg-neutral-200 active:scale-[0.97];
+    @apply dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700;
+  }
+
+  /* ─── Cards — 16px radius, flat by default ─── */
+
+  .card {
+    @apply bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-6;
+    @apply transition-all duration-250;
+  }
+
+  .card-elevated {
+    @apply card shadow-card;
+  }
+
+  .card-on-dark {
+    @apply bg-black text-white dark:bg-neutral-900 rounded-card p-6;
+    @apply transition-all duration-250;
+  }
+
+  /* ─── Nav ─── */
+
   .nav-link {
-    @apply text-gray-700 dark:text-dark-500 hover:text-primary-600 dark:hover:text-accent transition-colors duration-200 text-sm;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    @apply text-black dark:text-white hover:opacity-70 transition-opacity duration-250;
   }
 
   .nav-link.active {
-    @apply text-primary-600 dark:text-accent;
+    @apply opacity-100;
   }
 
-  /* Clean section headers */
-  .section-title {
-    @apply text-xl md:text-2xl font-semibold text-gray-900 dark:text-dark-900;
+  /* ─── Section headers ─── */
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.04em;
+    @apply uppercase text-ink-mute dark:text-on-dark-muted;
   }
 
-  .section-subtitle {
-    @apply text-gray-700 dark:text-dark-500 text-sm mt-1;
+  /* ─── Prose overrides ─── */
+
+  .prose-uber {
+    @apply prose prose-lg max-w-none dark:prose-invert;
+    --tw-prose-body: #000000;
+    --tw-prose-headings: #000000;
+    --tw-prose-links: #276EF1;
+    --tw-prose-bold: #000000;
+    --tw-prose-captions: #5e5e5e;
   }
 
-  /* Minimal avatar */
-  .avatar {
-    @apply w-28 h-28 md:w-36 md:h-36 rounded-full object-cover border-2 border-gray-900/10 dark:border-border/30;
-  }
-
-  .avatar-glow {
-    @apply relative;
+  .dark .prose-uber {
+    --tw-prose-body: #ffffff;
+    --tw-prose-headings: #ffffff;
+    --tw-prose-links: #8BADF8;
+    --tw-prose-bold: #ffffff;
+    --tw-prose-captions: #afafaf;
   }
 }
 
 @layer utilities {
-  .animate-delay-100 {
-    animation-delay: 100ms;
-  }
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
 
-  .animate-delay-200 {
-    animation-delay: 200ms;
-  }
-
+  /* Grid pattern for hero — barely visible */
   .bg-grid-pattern {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    background-size: 50px 50px;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   }
 
   .dark .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
   }
 }

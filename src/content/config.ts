@@ -9,6 +9,7 @@ const postsCollection = defineCollection({
         draft: z.boolean().default(false),
         tags: z.array(z.string()).optional(),
         image: z.string().optional(),
+        canonicalUrl: z.string().url().optional(),
     }),
 });
 
@@ -24,6 +25,7 @@ const projectsCollection = defineCollection({
         github: z.string().optional(),
         image: z.string().optional(),
         pinned: z.boolean().default(false),
+        canonicalUrl: z.string().url().optional(),
     }),
 });
 

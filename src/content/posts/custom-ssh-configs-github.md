@@ -3,6 +3,7 @@ title: "How to Set Up Custom SSH Configurations for GitHub Projects"
 description: "A step-by-step guide to managing multiple SSH keys for different GitHub projects using custom configurations."
 date: 2026-01-09
 tags: ["GitHub", "SSH", "DevOps", "Productivity"]
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/system/custom-ssh-config"
 ---
 
 When working on multiple GitHub projects, managing SSH keys for each project can become cumbersome. To streamline this process, you can create custom SSH configurations. This guide will walk you through the steps to set up custom SSH configurations, allowing you to use different SSH keys for different GitHub projects.

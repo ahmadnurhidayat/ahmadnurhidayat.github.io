@@ -24,24 +24,31 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
   <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <!-- Header -->
     <header class="mb-10">
-      <a href="/posts" class="inline-flex items-center gap-2 text-gray-600 dark:text-dark-400 hover:text-primary-600 dark:hover:text-white transition-colors mb-6">
+      <a href="/posts" class="inline-flex items-center gap-2 text-ink-mute dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors duration-250 mb-6 text-body-sm">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
         Back to posts
       </a>
-      
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{post.data.title}</h1>
-      
-      <div class="flex items-center gap-4 text-gray-600 dark:text-dark-400">
+
+      <h1 class="text-display-xl text-black dark:text-white mb-4">{post.data.title}</h1>
+
+      {post.data.canonicalUrl && (
+        <a href={post.data.canonicalUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-body-sm text-black dark:text-white hover:opacity-70 transition-opacity duration-250 mb-4 underline">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Read the full guide on docs.beyondyou.my.id
+        </a>
+      )}
+
+      <div class="flex items-center gap-4 text-ink-body dark:text-neutral-400">
         <time datetime={post.data.date.toISOString()}>
           {formattedDate}
         </time>
-        
+
         {post.data.tags && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag) => (
-              <span class="text-xs bg-gray-100 dark:bg-dark-100 text-gray-700 dark:text-gray-300 px-2 py-1 rounded">{tag}</span>
+              <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-pill">{tag}</span>
             ))}
           </div>
         )}
@@ -49,13 +56,14 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
     </header>
 
     <!-- Content -->
-    <div class="prose prose-lg max-w-none dark:prose-invert
-      prose-headings:font-semibold
-      prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-      prose-p:leading-relaxed
-      prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:text-primary-500 dark:hover:prose-a:text-primary-300
-      prose-img:rounded-lg
+    <div class="prose-uber
+      prose-headings:font-bold prose-headings:tracking-normal
+      prose-h2:text-display-lg prose-h2:mt-12 prose-h2:mb-4
+      prose-h3:text-display-md prose-h3:mt-8 prose-h3:mb-3
+      prose-p:text-ink-body dark:prose-p:text-neutral-400
+      prose-a:text-black dark:prose-a:text-white prose-a:underline hover:prose-a:opacity-70
+      prose-img:rounded-card
+      prose-li:text-ink-body dark:prose-li:text-neutral-400
     ">
       <Content />
     </div>
@@ -65,17 +73,12 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 <script>
   // Mermaid support
   document.addEventListener('DOMContentLoaded', async () => {
-    // Find all potential mermaid blocks:
-    // 1. pre > code.language-mermaid (standard Markdown)
-    // 2. pre.mermaid (some processors)
-    // 3. div.mermaid (explicit divs)
     const mermaidCodeBlocks = document.querySelectorAll('pre > code.language-mermaid, pre.mermaid, div.mermaid');
-    
+
     if (mermaidCodeBlocks.length > 0) {
-      // @ts-ignore
       const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-      
-      mermaid.initialize({ 
+
+      mermaid.initialize({
         startOnLoad: false,
         theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
         securityLevel: 'loose',
@@ -83,30 +86,28 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
       });
 
       for (const block of mermaidCodeBlocks) {
-        // If it's already a div.mermaid, skip structure modification but ensure it's not processed yet
         if (block.tagName === 'DIV' && block.classList.contains('mermaid')) {
            continue;
         }
 
         const content = block.textContent;
-        // If it's a code block inside pre
         const pre = block.tagName === 'CODE' ? block.parentElement : block;
-        
+
         const div = document.createElement('div');
         div.classList.add('mermaid');
         div.textContent = content;
-        
+
         if (pre) {
           pre.replaceWith(div);
         }
       }
-      
+
       await mermaid.run({
         querySelector: '.mermaid'
       });
     }
 
-    // Lightbox support
+    // Lightbox
     const images = document.querySelectorAll('.prose img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -114,16 +115,14 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
 
     if (images.length > 0 && lightbox && lightboxImg && closeBtn) {
       images.forEach(img => {
-        if (img instanceof HTMLElement) {
-          img.style.cursor = 'zoom-in';
-        }
+        if (img instanceof HTMLElement) img.style.cursor = 'zoom-in';
         img.addEventListener('click', () => {
           if (lightboxImg instanceof HTMLImageElement && img instanceof HTMLImageElement) {
             lightboxImg.src = img.src;
             lightboxImg.alt = img.alt;
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
           }
         });
       });
@@ -131,37 +130,27 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
       const closeLightbox = () => {
         lightbox.classList.add('hidden');
         lightbox.classList.remove('flex');
-        document.body.style.overflow = ''; // Restore scrolling
-        if (lightboxImg instanceof HTMLImageElement) {
-          lightboxImg.src = '';
-        }
+        document.body.style.overflow = '';
+        if (lightboxImg instanceof HTMLImageElement) lightboxImg.src = '';
       };
 
       closeBtn.addEventListener('click', closeLightbox);
-      
-      // Close on background click
       lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
+        if (e.target === lightbox) closeLightbox();
       });
-
-      // Close on Escape key
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
-          closeLightbox();
-        }
+        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightbox();
       });
     }
   });
 </script>
 
-<!-- Lightbox Modal -->
+<!-- Lightbox -->
 <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm items-center justify-center p-4 transition-all duration-300">
-  <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none p-2" aria-label="Close lightbox">
+  <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-neutral-300 focus:outline-none p-2" aria-label="Close lightbox">
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
-  <img id="lightbox-img" src="" alt="Lightbox image" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" />
+  <img id="lightbox-img" src="" alt="Lightbox image" class="max-w-full max-h-[90vh] object-contain rounded-uber-lg shadow-2xl" />
 </div>

@@ -3,6 +3,7 @@ title: "CI/CD Pipeline Automation"
 description: "How to set up an efficient CI/CD pipeline for your projects."
 date: 2024-01-05
 tags: ["ci-cd", "automation", "devops", "github-actions"]
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/cicd/00-index"
 ---
 
 # CI/CD Pipeline Automation

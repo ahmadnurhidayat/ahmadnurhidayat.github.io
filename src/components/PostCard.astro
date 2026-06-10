@@ -4,21 +4,43 @@ export interface Props {
   description: string;
   date: string;
   slug: string;
+  tags?: string[];
 }
 
-const { title, description, date, slug } = Astro.props;
+const { title, description, date, slug, tags = [] } = Astro.props;
+const displayTags = tags.slice(0, 3);
 ---
 
-<a href={`/posts/${slug}`} class="group block bg-white dark:bg-surface/30 border border-gray-200 dark:border-border/40 rounded-xl p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg border-l-4 border-l-primary-600/30 dark:border-l-accent/30 hover:border-l-primary-600 dark:hover:border-l-accent">
-  <article>
-    <time class="text-xs text-gray-600 dark:text-dark-500" datetime={date}>
-      {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-    </time>
-    <h3 class="font-medium text-gray-900 dark:text-dark-900 mt-1 group-hover:text-primary-600 dark:group-hover:text-accent transition-colors">
+<a href={`/posts/${slug}`} class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-5 transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600">
+  <article class="flex flex-col h-full">
+    <div class="flex items-center justify-between mb-2">
+      <time class="text-caption text-ink-light dark:text-neutral-500" datetime={date}>
+        {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </time>
+      <span class="text-caption text-ink-light dark:text-neutral-500 opacity-0 group-hover:opacity-100 transition-opacity duration-250 font-medium">
+        Read post &rarr;
+      </span>
+    </div>
+
+    <h3 class="text-body-md-strong text-black dark:text-white group-hover:opacity-70 transition-opacity duration-250 leading-snug">
       {title}
     </h3>
-    <p class="text-gray-800 dark:text-dark-500 text-sm mt-2 line-clamp-2">
+
+    <p class="text-body-sm text-ink-body dark:text-neutral-400 mt-1.5 line-clamp-2 flex-1">
       {description}
     </p>
+
+    {displayTags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-3">
+        {displayTags.map((tag) => (
+          <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-pill">
+            {tag}
+          </span>
+        ))}
+        {tags.length > 3 && (
+          <span class="text-[11px] text-ink-light dark:text-neutral-500 self-center">+{tags.length - 3}</span>
+        )}
+      </div>
+    )}
   </article>
 </a>

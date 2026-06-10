@@ -5,62 +5,76 @@ export default {
     theme: {
         extend: {
             colors: {
-                // New color palette from ColorHunt
-                // #061E29 - Dark navy (background)
-                // #1D546D - Teal blue (primary/accent)
-                // #5F9598 - Sage teal (secondary)
-                // #F3F4F4 - Off-white (light background)
+                // Uber strict two-color system
                 primary: {
-                    50: '#e8f4f8',
-                    100: '#d1e9f1',
-                    200: '#a3d3e3',
-                    300: '#75bdd5',
-                    400: '#47a7c7',
-                    500: '#5F9598',
-                    600: '#1D546D',
-                    700: '#174357',
-                    800: '#113241',
-                    900: '#061E29',
+                    DEFAULT: '#000000',  // INK BLACK — the ONLY brand color
+                    elevated: '#282828',  // hover state on dark pills
+                    pressed: '#e2e2e2',   // pressed state on white pills
                 },
-                // Dark mode shades based on palette
-                dark: {
-                    50: '#061E29',
-                    100: '#0a2a38',
-                    200: '#0f3647',
-                    300: '#1D546D',
-                    400: '#5F9598',
-                    500: '#8cb3b5',
-                    600: '#b9d1d2',
-                    700: '#d6e4e5',
-                    800: '#e9f0f0',
-                    900: '#F3F4F4',
+                canvas: {
+                    DEFAULT: '#ffffff',
+                    soft: '#efefef',      // gray pills, form inputs, chip bg
+                    softer: '#f3f3f3',    // nested input fill
                 },
-                // Semantic colors
-                background: '#061E29',
-                'background-light': '#F3F4F4',
-                surface: '#0a2a38',
-                'surface-light': '#ffffff',
-                border: '#1D546D',
-                'border-light': '#d6e4e5',
-                accent: '#5F9598',
+                ink: {
+                    DEFAULT: '#000000',
+                    body: '#5e5e5e',      // secondary text
+                    mute: '#4b4b4b',      // muted links, footer
+                    light: '#afafaf',     // placeholders, fine print
+                },
+                'on-dark': {
+                    DEFAULT: '#ffffff',
+                    muted: '#afafaf',
+                },
+                link: {
+                    DEFAULT: '#0000ee',   // browser-blue legal links
+                },
+                // Interactive blue — links, focus rings, selection
+                interactive: {
+                    DEFAULT: '#276EF1',
+                    light: '#EEF3FE',
+                    dark: '#1E54C1',
+                },
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                display: ['Inter', 'system-ui', 'sans-serif'],  // UberMove substitute — weight 700
+                text: ['Inter', 'system-ui', 'sans-serif'],      // UberMoveText substitute — weight 400/500
+                mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
             },
-            animation: {
-                'fade-in': 'fadeIn 0.5s ease-in-out',
-                'slide-up': 'slideUp 0.5s ease-out',
+            fontSize: {
+                // Uber display typography scale (weight 700, sentence-case)
+                'display-xxl': ['52px', { lineHeight: '64px', fontWeight: '700' }],
+                'display-xl':  ['36px', { lineHeight: '44px', fontWeight: '700' }],
+                'display-lg':  ['32px', { lineHeight: '40px', fontWeight: '700' }],
+                'display-md':  ['24px', { lineHeight: '32px', fontWeight: '700' }],
+                'display-sm':  ['20px', { lineHeight: '28px', fontWeight: '700' }],
+                // Body typography (weight 400/500)
+                'body-lg':     ['18px', { lineHeight: '24px', fontWeight: '500' }],
+                'body-md':     ['16px', { lineHeight: '24px', fontWeight: '400' }],
+                'body-md-strong': ['16px', { lineHeight: '20px', fontWeight: '500' }],
+                'body-sm':     ['14px', { lineHeight: '20px', fontWeight: '400' }],
+                'body-sm-strong': ['14px', { lineHeight: '16px', fontWeight: '500' }],
+                'caption':     ['12px', { lineHeight: '20px', fontWeight: '400' }],
+                'button-lg':   ['18px', { lineHeight: '24px', fontWeight: '500' }],
+                'button-md':   ['16px', { lineHeight: '20px', fontWeight: '500' }],
             },
-            keyframes: {
-                fadeIn: {
-                    '0%': { opacity: '0' },
-                    '100%': { opacity: '1' },
-                },
-                slideUp: {
-                    '0%': { opacity: '0', transform: 'translateY(10px)' },
-                    '100%': { opacity: '1', transform: 'translateY(0)' },
-                },
+            borderRadius: {
+                'form': '8px',       // text inputs
+                'card-sm': '12px',   // smaller cards
+                'card': '16px',      // canonical card radius
+                'pill': '999px',     // THE signature shape — every interactive element
+                'pill-tab': '36px',  // tab toggle
+            },
+            boxShadow: {
+                'card': '0px 4px 16px 0px rgba(0, 0, 0, 0.12)',
+                'card-lg': '0px 4px 16px 0px rgba(0, 0, 0, 0.16)',
+                'pill-float': '0px 2px 8px 0px rgba(0, 0, 0, 0.16)',
+            },
+            spacing: {
+                '4.5': '18px',
+            },
+            transitionDuration: {
+                '250': '250ms',
             },
         },
     },
