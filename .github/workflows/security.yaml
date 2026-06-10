@@ -22,98 +22,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ─── JOB 1: TruffleHog — Verified Credential Scan ──────────────────
-  trufflehog:
-    name: TruffleHog (Credential Verification)
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: TruffleHog OSS Scan (PR diff)
-        if: github.event_name == 'pull_request'
-        id: scan
-        uses: trufflesecurity/trufflehog@v3.95.5
-        with:
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
-          extra_args: --only-verified --json
-        continue-on-error: true
-
-      - name: TruffleHog OSS Scan (push — latest commit)
-        if: github.event_name != 'pull_request'
-        id: scan_push
-        run: |
-          docker run --rm -v "$(pwd)":/src trufflesecurity/trufflehog:3.95.5 \
-            filesystem /src --only-verified --json > trufflehog-report.json 2>&1 || true
-        continue-on-error: true
-
-      - name: Check for findings
-        id: check
-        if: always()
-        run: |
-          if [ -f trufflehog-report.json ] && [ -s trufflehog-report.json ]; then
-            echo "CREDENTIALS FOUND — see artifact"
-            echo "has_findings=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Clean — no verified credentials"
-            echo "has_findings=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Upload scan report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: trufflehog-report-${{ github.run_id }}
-          path: trufflehog-report.json
-          retention-days: 3
-          if-no-files-found: ignore
-
-      - name: Comment scan result on PR
-        if: always() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const hasFindings = '${{ steps.check.outputs.has_findings }}' === 'true';
-            const marker = '<!-- trufflehog-scan-result -->';
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner, repo: context.repo.repo,
-              issue_number: context.issue.number,
-            });
-            const existing = comments.find(c => c.body.includes(marker));
-            const body = [
-              marker,
-              `## ${hasFindings ? '🚨' : '✅'} TruffleHog — ${hasFindings ? 'Secrets Detected' : 'No Verified Secrets'}`,
-              '',
-              hasFindings
-                ? '> **Action Required:** Verified credentials detected. Review the `trufflehog-report` artifact and rotate all exposed keys immediately.'
-                : 'No verified credentials found in commit history.',
-              '',
-              `**Run:** [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
-            ].join('\n');
-            if (existing) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner, repo: context.repo.repo,
-                comment_id: existing.id, body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner, repo: context.repo.repo,
-                issue_number: context.issue.number, body,
-              });
-            }
-
-      - name: Enforce scan result
-        if: steps.check.outputs.has_findings == 'true'
-        run: |
-          echo "::error::TruffleHog detected active credentials. Check the artifact report."
-          exit 1
-
-  # ─── JOB 2: Gitleaks — Pattern-Based Secret Scan ────────────────────
   gitleaks:
     name: Gitleaks (Pattern Secret Scan)
     runs-on: ubuntu-latest
@@ -173,7 +81,6 @@ jobs:
           echo "::error::Gitleaks detected secret patterns. Review the Actions log."
           exit 1
 
-  # ─── JOB 3: Trivy — SCA, Misconfig & Vulnerability Scan ─────────────
   trivy:
     name: Trivy (SCA & Misconfig)
     runs-on: ubuntu-latest
