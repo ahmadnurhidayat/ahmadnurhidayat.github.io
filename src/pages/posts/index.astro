@@ -22,7 +22,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
           title={post.data.title}
           description={post.data.description}
           date={post.data.date.toISOString()}
-          slug={post.slug}
+          slug={post.id.replace(/\.md$/, '')}
         />
       ))}
     </div>
