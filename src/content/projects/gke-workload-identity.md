@@ -233,6 +233,13 @@ kind: Deployment
 metadata:
   name: my-app
   namespace: production
+  labels:
+    app.kubernetes.io/name: my-app
+    app.kubernetes.io/instance: my-app-v1
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: my-app
+    app.kubernetes.io/managed-by: kubectl
 spec:
   replicas: 3
   selector:
@@ -275,6 +282,12 @@ kind: Pod
 metadata:
   name: workload-identity-test
   namespace: production
+  labels:
+    app.kubernetes.io/name: workload-identity-test
+    app.kubernetes.io/instance: workload-identity-test
+    app.kubernetes.io/component: verification
+    app.kubernetes.io/part-of: my-app
+    app.kubernetes.io/managed-by: kubectl
 spec:
   serviceAccountName: my-app-ksa
   containers:
@@ -309,6 +322,13 @@ kind: Deployment
 metadata:
   name: my-app
   namespace: production
+  labels:
+    app.kubernetes.io/name: my-app
+    app.kubernetes.io/instance: my-app-cloudsql-v1
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: my-app
+    app.kubernetes.io/managed-by: kubectl
 spec:
   replicas: 2
   selector:
