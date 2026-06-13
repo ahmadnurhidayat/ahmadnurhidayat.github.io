@@ -1,7 +1,7 @@
 ---
 title: "MikroTik Firewall Automation with Express.js"
 description: "Build an Express.js microservice to automate MikroTik firewall rules via REST API — dynamic IP whitelisting for CI/CD runners with 30-min TTL."
-pubDatetime: 2024-06-20
+date: 2024-06-20
 tags: ["mikrotik", "firewall", "express", "nodejs", "devops", "automation"]
 canonicalUrl: "https://docs.beyondyou.my.id/01-knowledge-base/system/mikrotik-firewall-automation-expressjs/"
 ---

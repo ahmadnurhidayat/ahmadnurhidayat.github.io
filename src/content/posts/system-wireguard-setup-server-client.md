@@ -1,7 +1,7 @@
 ---
 title: "WireGuard Setup: Server + Client"
 description: "Deploy a WireGuard VPN server and connect clients on Ubuntu/Debian — complete guide covering key generation, server/client configs, split tunneling, and troubleshooting."
-pubDatetime: 2024-06-20
+date: 2024-06-20
 tags: ["wireguard", "vpn", "linux", "networking"]
 canonicalUrl: "https://docs.beyondyou.my.id/01-knowledge-base/system/wireguard-setup-server-client/"
 ---
