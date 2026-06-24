@@ -5,26 +5,170 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
 ---
 
-<BaseLayout title="Posts | Ahmad Nurhidayat" description="Blog posts about DevOps and Cloud.">
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-    <div class="mb-10">
-      <h1 class="text-2xl md:text-3xl font-semibold">Writing</h1>
-      <p class="text-dark-400 dark:text-dark-500 mt-2">
-        Thoughts on technology and development.
+<BaseLayout title="Posts | Ahmad Nurhidayat" description="Blog posts about DevOps, Kubernetes, Cloud, and Infrastructure.">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-2xl md:text-3xl font-semibold">Posts</h1>
+      <p class="text-body-sm text-ink-body dark:text-neutral-400 mt-2">
+        {posts.length} articles on DevOps, Cloud, and Infrastructure.
       </p>
     </div>
 
-    <div class="grid gap-4">
-      {posts.map((post) => (
-        <PostCard 
-          title={post.data.title}
-          description={post.data.description}
-          date={post.data.date.toISOString()}
-          slug={post.id.replace(/\.md$/, '')}
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <div class="relative">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-light dark:text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search posts..."
+          class="w-full pl-11 pr-4 py-3 bg-canvas-soft dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-card text-body-sm text-black dark:text-white placeholder:text-ink-light dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors duration-250"
         />
+        <kbd class="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 text-[11px] text-ink-light dark:text-neutral-500 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-1.5 py-0.5 rounded">
+          <span class="text-[10px]">⌘</span>K
+        </kbd>
+      </div>
+    </div>
+
+    <!-- Tag Filter -->
+    <div class="mb-8 flex flex-wrap gap-2" id="tag-filter">
+      <button
+        class="tag-btn active"
+        data-tag="all"
+      >
+        All
+      </button>
+      {allTags.map(tag => (
+        <button
+          class="tag-btn"
+          data-tag={tag}
+        >
+          {tag}
+        </button>
       ))}
+    </div>
+
+    <!-- Post Count -->
+    <p id="post-count" class="text-caption text-ink-light dark:text-neutral-500 mb-4 hidden">
+      Showing <span id="count-number">0</span> posts
+    </p>
+
+    <!-- Posts Grid -->
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {posts.map((post) => (
+        <div
+          class="post-item"
+          data-title={post.data.title.toLowerCase()}
+          data-description={(post.data.description || '').toLowerCase()}
+          data-tags={JSON.stringify(post.data.tags || [])}
+        >
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date.toISOString()}
+            slug={post.id.replace(/\.md$/, '')}
+            tags={post.data.tags}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <svg class="w-12 h-12 mx-auto text-ink-light dark:text-neutral-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p class="text-body-sm text-ink-light dark:text-neutral-500">No posts found.</p>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const tagButtons = document.querySelectorAll('.tag-btn');
+  const postItems = document.querySelectorAll('.post-item');
+  const emptyState = document.getElementById('empty-state');
+  const postCount = document.getElementById('post-count');
+  const countNumber = document.getElementById('count-number');
+
+  let activeTag = 'all';
+
+  function filterPosts() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    postItems.forEach((item) => {
+      const el = item as HTMLElement;
+      const title = el.dataset.title || '';
+      const description = el.dataset.description || '';
+      const tags: string[] = JSON.parse(el.dataset.tags || '[]');
+
+      const matchesSearch = !query || title.includes(query) || description.includes(query) || tags.some(t => t.toLowerCase().includes(query));
+      const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+
+      if (matchesSearch && matchesTag) {
+        el.style.display = '';
+        visibleCount++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyState?.classList.remove('hidden');
+      postCount?.classList.add('hidden');
+    } else {
+      emptyState?.classList.add('hidden');
+      if (query || activeTag !== 'all') {
+        postCount?.classList.remove('hidden');
+        if (countNumber) countNumber.textContent = String(visibleCount);
+      } else {
+        postCount?.classList.add('hidden');
+      }
+    }
+  }
+
+  searchInput?.addEventListener('input', filterPosts);
+
+  tagButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tagButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTag = (btn as HTMLElement).dataset.tag || 'all';
+      filterPosts();
+    });
+  });
+
+  // Keyboard shortcut: Cmd+K or Ctrl+K to focus search
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+    if (e.key === 'Escape') {
+      searchInput?.blur();
+    }
+  });
+</script>
+
+<style>
+  .tag-btn {
+    @apply text-[13px] font-medium px-3.5 py-1.5 rounded-pill border transition-all duration-200;
+    @apply bg-white text-ink-body border-neutral-200;
+    @apply hover:bg-canvas-soft hover:text-black hover:border-neutral-300;
+    @apply dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800;
+    @apply dark:hover:bg-neutral-800 dark:hover:text-white dark:hover:border-neutral-700;
+  }
+
+  .tag-btn.active {
+    @apply bg-black text-white border-black;
+    @apply dark:bg-white dark:text-black dark:border-white;
+  }
+</style>

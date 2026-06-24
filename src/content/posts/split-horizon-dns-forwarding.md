@@ -1,7 +1,7 @@
 ---
 title: "Split-Horizon DNS Forwarding (BIND9, dnsmasq, Unbound)"
 description: "Configure split-horizon DNS to resolve internal and external hostnames differently — essential for hybrid cloud and multi-network environments."
-date: 2025-03-10
+date: 2025-07-01
 tags: [dns, networking, bind9, dnsmasq, unbound, system, split-horizon]
 draft: false
 canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/system/split-horizon-dns-forwarding"
@@ -11,18 +11,31 @@ Split-horizon DNS (also called split-view or split-brain DNS) serves different D
 
 ## Key Takeaways
 
-- Split-horizon DNS provides different DNS answers based on the client's source network or IP range
-- Internal clients resolve to private IPs (RFC 1918); external clients resolve to public IPs
-- BIND9 implements this via `view` clauses that match client subnets
-- dnsmasq uses conditional forwarding with `server=/domain/internal-dns-ip` directives
-- Unbound supports split-horizon through `stub-zone` and `forward-zone` configurations with access control
+- Split-horizon DNS provides different DNS answers based on the client's source network or domain pattern
+- **Forward-only mode** eliminates zone file management — the server only proxies to upstream resolvers
+- BIND9 uses `view` clauses or zone-level `type forward` for conditional routing
+- dnsmasq uses `server=/domain/ip` directives for lightweight conditional forwarding
+- Unbound uses `forward-zone` blocks with access control for hardened environments
 
-## Quick Overview
+## Forward-Only Architecture
 
-In BIND9, split-horizon is implemented through `view` statements. Each view has an `match-clients` directive that selects which clients see this view. The internal view contains zone data with private IPs; the external view contains the same zones but with public IPs. Queries from internal subnets match the internal view; everything else falls through to the external view.
+Instead of hosting authoritative zone files, a forward-only split-horizon server acts as an intelligent edge router:
 
-For simpler setups, dnsmasq's conditional forwarding is easier: forward `*.internal.example.com` to an internal DNS server, and resolve everything else through public DNS. This is perfect for development environments, homelabs, and small office networks where BIND9's complexity isn't justified.
+1. Client queries `internal.example.com`
+2. Forwarder matches the domain pattern
+3. Query is proxied to the private DNS resolver (`10.0.0.1`)
+4. Response is cached and returned to the client
 
----
+For public queries (`www.example.com`), the forwarder routes to public resolvers (`8.8.8.8`). No private IPs ever leak to external resolvers.
 
-**Read the full guide:** [Split-Horizon DNS Forwarding →](https://docs.beyondyou.my.id/docs/01-knowledge-base/system/split-horizon-dns-forwarding) — includes complete BIND9, dnsmasq, and Unbound configuration examples with troubleshooting guides.
+## Best Practices
+
+| Practice | Why It Matters |
+| :--- | :--- |
+| Always set `no-resolv` (dnsmasq) | Prevents bypassing your forwarding rules via `/etc/resolv.conf` |
+| Restrict `access-control` (Unbound) | Don't allow open recursion from untrusted networks |
+| Enable log rotation | Prevents DNS log files from filling disk |
+| Use `forward first` in BIND9 global options | Allows fallback to recursion if forwarders fail |
+| Set bounded cache TTLs | Prevents stale records from persisting indefinitely |
+
+**Read the full guide:** [Split-Horizon DNS Forwarding →](https://docs.beyondyou.my.id/docs/01-knowledge-base/system/split-horizon-dns-forwarding) — includes complete BIND9, dnsmasq, and Unbound configurations, verification steps, troubleshooting matrix, and production hardening checklist.
