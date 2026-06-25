@@ -6,7 +6,26 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
+const categories = [
+  { label: 'CICD & GitOps',      tags: ['cicd', 'gitops', 'github-actions', 'argocd'] },
+  { label: 'Cloud',               tags: ['cloud', 'gcp', 'aws', 'azure'] },
+  { label: 'Cloud Migration',     tags: ['migration', 'cloud-migration'] },
+  { label: 'Containers',          tags: ['docker', 'container', 'containers'] },
+  { label: 'Database',            tags: ['database', 'postgresql', 'mongodb', 'mysql'] },
+  { label: 'DevOps',              tags: ['devops', 'sre', 'platform-engineering'] },
+  { label: 'Disaster Recovery',   tags: ['disaster-recovery', 'dr', 'backup'] },
+  { label: 'Hardware & System Design', tags: ['hardware', 'system', 'proxmox', 'wireguard', 'mikrotik'] },
+  { label: 'Infrastructure',      tags: ['infrastructure', 'vpc', 'networking', 'dns'] },
+  { label: 'Infrastructure as Code', tags: ['iac', 'terraform', 'pulumi'] },
+  { label: 'Kubernetes',          tags: ['kubernetes', 'k8s', 'gke', 'eks', 'helm', 'gateway-api', 'ingress'] },
+  { label: 'Machine Learning & MLOps', tags: ['ml', 'mlops', 'machine-learning', 'ai'] },
+  { label: 'Monitoring & Observability', tags: ['monitoring', 'observability', 'prometheus', 'grafana', 'loki', 'tempo', 'thanos', 'uptime-kuma', 'alloy'] },
+  { label: 'Networking',          tags: ['networking', 'dns', 'webrtc', 'coturn'] },
+  { label: 'Projects',           tags: ['project', 'projects'] },
+  { label: 'Security',           tags: ['security', 'auth', 'jwt', 'tls', 'ssl'] },
+  { label: 'Tech Pulse',         tags: ['tech-pulse', 'tech pulse', 'news', 'trends'] },
+  { label: 'Testing',            tags: ['testing', 'test', 'qa'] },
+];
 ---
 
 <BaseLayout title="Posts | Ahmad Nurhidayat" description="Blog posts about DevOps, Kubernetes, Cloud, and Infrastructure.">
@@ -37,7 +56,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
       </div>
     </div>
 
-    <!-- Tag Filter -->
+    <!-- Category Filter -->
     <div class="mb-8 flex flex-wrap gap-2" id="tag-filter">
       <button
         class="tag-btn active"
@@ -45,12 +64,13 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
       >
         All
       </button>
-      {allTags.map(tag => (
+      {categories.map(cat => (
         <button
           class="tag-btn"
-          data-tag={tag}
+          data-tag={cat.label}
+          data-keywords={JSON.stringify(cat.tags)}
         >
-          {tag}
+          {cat.label}
         </button>
       ))}
     </div>
@@ -99,6 +119,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
   const countNumber = document.getElementById('count-number');
 
   let activeTag = 'all';
+  let activeKeywords: string[] = [];
 
   function filterPosts() {
     const query = searchInput.value.toLowerCase().trim();
@@ -109,11 +130,12 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
       const title = el.dataset.title || '';
       const description = el.dataset.description || '';
       const tags: string[] = JSON.parse(el.dataset.tags || '[]');
+      const tagsLower = tags.map(t => t.toLowerCase());
 
-      const matchesSearch = !query || title.includes(query) || description.includes(query) || tags.some(t => t.toLowerCase().includes(query));
-      const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+      const matchesSearch = !query || title.includes(query) || description.includes(query) || tagsLower.some(t => t.includes(query));
+      const matchesCategory = activeTag === 'all' || activeKeywords.some(kw => tagsLower.includes(kw.toLowerCase()));
 
-      if (matchesSearch && matchesTag) {
+      if (matchesSearch && matchesCategory) {
         el.style.display = '';
         visibleCount++;
       } else {
@@ -142,6 +164,8 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
       tagButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeTag = (btn as HTMLElement).dataset.tag || 'all';
+      const kw = (btn as HTMLElement).dataset.keywords;
+      activeKeywords = kw ? JSON.parse(kw) : [];
       filterPosts();
     });
   });
