@@ -4,7 +4,7 @@ description: "Production Loki deployment with GCS backend, SimpleScalable mode, 
 date: 2026-06-26
 tags: [observability, loki, grafana, helm, kubernetes, gcp]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/loki-helm-production.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/loki-helm-production"
 ---
 
 Running Loki in production on Kubernetes requires careful tuning of storage, ingestion, and compaction. This guide covers a production Loki deployment using the Helm chart with GCS backend, SimpleScalable mode, and optimized retention.
@@ -38,4 +38,4 @@ The default Helm values assume small-scale evaluation. Without tuning ingestion 
 
 ---
 
-**Read the full guide:** [Loki Distributed on Kubernetes — Helm Production Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/loki-helm-production.md) — includes Helm values reference, GCS IAM setup, retention tuning, and Grafana integration.
+**Read the full guide:** [Loki Distributed on Kubernetes — Helm Production Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/loki-helm-production) — includes Helm values reference, GCS IAM setup, retention tuning, and Grafana integration.

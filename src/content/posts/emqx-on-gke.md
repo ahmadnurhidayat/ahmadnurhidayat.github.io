@@ -4,7 +4,7 @@ description: "EMQX 3-node cluster with JWT auth, webhooks, and Gateway API routi
 date: 2025-06-16
 tags: [messaging, emqx, mqtt, gke, kubernetes, gateway-api, iot]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-on-gke.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-on-gke"
 ---
 
 # EMQX on GKE — MQTT Broker with Gateway API (YAML from Scratch)

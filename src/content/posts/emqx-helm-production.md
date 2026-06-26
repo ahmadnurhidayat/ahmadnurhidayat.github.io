@@ -4,7 +4,7 @@ description: "Enterprise MQTT broker on Kubernetes with JWT auth, TLS, auto-scal
 date: 2026-06-26
 tags: [messaging, emqx, mqtt, helm, kubernetes, iot]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-helm-production.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-helm-production"
 ---
 
 Running EMQX in production on Kubernetes goes beyond a basic Helm install. This guide walks through a production-grade deployment with TLS termination, JWT authentication, autoscaling, and full observability via Prometheus and Grafana.
@@ -40,4 +40,4 @@ The default Helm values are designed for evaluation, not production. Without tun
 
 ---
 
-**Read the full guide:** [EMQX Production Deployment via Helm →](https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-helm-production.md) — includes Helm chart walkthrough, TLS setup, backup CronJobs, and production monitoring configuration.
+**Read the full guide:** [EMQX Production Deployment via Helm →](https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/emqx-helm-production) — includes Helm chart walkthrough, TLS setup, backup CronJobs, and production monitoring configuration.

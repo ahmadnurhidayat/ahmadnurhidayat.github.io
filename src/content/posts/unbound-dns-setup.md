@@ -4,7 +4,7 @@ description: "Modular Unbound DNS resolver configuration with forwarding zones, 
 date: 2026-06-26
 tags: [dns, networking, unbound, system, infrastructure]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/system/unbound-dns-setup.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/system/unbound-dns-setup"
 ---
 
 Unbound is a lightweight, high-performance DNS resolver that's ideal for internal infrastructure. This guide covers a modular setup with split forwarding zones, caching optimization, and access control for production environments.
@@ -38,4 +38,4 @@ Most DNS guides stop at "install and configure." This one goes further — cover
 
 ---
 
-**Read the full guide:** [Unbound DNS — Best Practice Setup →](https://docs.beyondyou.my.id/docs/01-knowledge-base/system/unbound-dns-setup.md) — includes full Unbound config files, systemd hardening, and multi-environment forwarding strategy.
+**Read the full guide:** [Unbound DNS — Best Practice Setup →](https://docs.beyondyou.my.id/docs/01-knowledge-base/system/unbound-dns-setup) — includes full Unbound config files, systemd hardening, and multi-environment forwarding strategy.

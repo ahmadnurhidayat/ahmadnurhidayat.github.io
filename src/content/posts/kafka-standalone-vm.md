@@ -4,7 +4,7 @@ description: "Single-broker Kafka with ZooKeeper on bare metal VM."
 date: 2025-06-16
 tags: [messaging, kafka, vm, bare-metal, systemd, standalone]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-standalone-vm.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-standalone-vm"
 ---
 
 # Kafka Standalone on VM — Bare Metal Installation with ZooKeeper

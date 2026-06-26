@@ -4,7 +4,7 @@ description: "Production Tempo deployment with GCS storage, OTLP/Jaeger/Zipkin r
 date: 2026-06-26
 tags: [observability, tempo, grafana, helm, kubernetes, tracing]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/tempo-helm-production.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/tempo-helm-production"
 ---
 
 Tempo is Grafana's distributed tracing backend. This guide covers a production Helm deployment with GCS storage, multi-protocol receivers (OTLP, Jaeger, Zipkin), and the metrics generator for RED metrics from traces.
@@ -38,4 +38,4 @@ A misconfigured Tempo deployment silently drops traces. Without proper storage t
 
 ---
 
-**Read the full guide:** [Tempo Distributed on Kubernetes — Helm Production Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/tempo-helm-production.md) — includes Helm values reference, GCS setup, metrics generator config, and Grafana datasource linking.
+**Read the full guide:** [Tempo Distributed on Kubernetes — Helm Production Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/tempo-helm-production) — includes Helm values reference, GCS setup, metrics generator config, and Grafana datasource linking.

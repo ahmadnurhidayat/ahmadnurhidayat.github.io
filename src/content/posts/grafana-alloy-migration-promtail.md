@@ -4,7 +4,7 @@ description: "Step-by-step migration from Promtail to Grafana Alloy for log coll
 date: 2026-06-26
 tags: [observability, grafana, alloy, promtail, loki, kubernetes]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/grafana-alloy-migration-promtail.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/grafana-alloy-migration-promtail"
 ---
 
 Grafana Alloy is the unified telemetry collector that replaces Promtail, Tempo, and Mimir agents. This guide covers a practical migration path from Promtail to Alloy in Kubernetes, including config conversion and validation.
@@ -39,4 +39,4 @@ The migration is straightforward but has pitfalls — Promtail pipeline stages d
 
 ---
 
-**Read the full guide:** [Grafana Alloy Migration — Replace Promtail with Alloy →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/grafana-alloy-migration-promtail.md) — includes Promtail-to-Alloy config mapping, Helm values, and production rollout strategy.
+**Read the full guide:** [Grafana Alloy Migration — Replace Promtail with Alloy →](https://docs.beyondyou.my.id/docs/01-knowledge-base/observability/grafana-alloy-migration-promtail) — includes Promtail-to-Alloy config mapping, Helm values, and production rollout strategy.

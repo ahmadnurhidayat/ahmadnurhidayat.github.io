@@ -4,7 +4,7 @@ description: "Kafka + ZooKeeper cluster on GKE with StatefulSet."
 date: 2025-06-16
 tags: [messaging, kafka, gke, kubernetes, zookeeper, statefulset]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-on-gke-zookeeper.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-on-gke-zookeeper"
 ---
 
 # Kafka on GKE with ZooKeeper — StatefulSet Deployment

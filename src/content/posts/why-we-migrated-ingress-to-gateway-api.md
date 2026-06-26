@@ -4,7 +4,7 @@ description: "Production retrospective of migrating from Ingress to Gateway API.
 date: 2025-06-16
 tags: [gcp, gke, kubernetes, gateway-api, ingress, migration, production]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/why-we-migrated-ingress-to-gateway-api.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/why-we-migrated-ingress-to-gateway-api"
 ---
 
 # Why We Migrated from Ingress to Gateway API on GKE — A Production Retrospective

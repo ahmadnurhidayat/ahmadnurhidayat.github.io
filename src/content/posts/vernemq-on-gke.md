@@ -4,7 +4,7 @@ description: "VerneMQ Helm deployment as EMQX alternative."
 date: 2025-06-16
 tags: [messaging, vernemq, mqtt, gke, kubernetes, helm]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/vernemq-on-gke.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/vernemq-on-gke"
 ---
 
 # VerneMQ on GKE — MQTT Broker via Helm

@@ -4,7 +4,7 @@ description: "Coturn deployment for MyApp customer calls with Envoy Gateway UDPR
 date: 2025-06-16
 tags: [gcp, gke, kubernetes, webrtc, turn, stun, coturn, envoy-gateway]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-webrtc-turn-stun-coturn.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-webrtc-turn-stun-coturn"
 ---
 
 # WebRTC TURN/STUN with Coturn on Kubernetes — Toko Customer Calls

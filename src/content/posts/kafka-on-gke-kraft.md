@@ -4,7 +4,7 @@ description: "KRaft mode Kafka cluster on GKE StatefulSet."
 date: 2025-06-16
 tags: [messaging, kafka, gke, kubernetes, kraft, statefulset]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-on-gke-kraft.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-on-gke-kraft"
 ---
 
 # Kafka on GKE with KRaft — No ZooKeeper

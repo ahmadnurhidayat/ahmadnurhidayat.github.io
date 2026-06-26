@@ -4,7 +4,7 @@ description: "Multi-broker Kafka cluster with Docker Compose."
 date: 2025-06-16
 tags: [messaging, kafka, docker, kraft, zookeeper, docker-compose]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-cluster-docker.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-cluster-docker"
 ---
 
 # Kafka Cluster with Docker — Multi-Broker with ZooKeeper and KRaft

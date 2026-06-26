@@ -4,7 +4,7 @@ description: "GKE FrontendConfig for automatic HTTP to HTTPS redirect using Load
 date: 2025-06-16
 tags: [gcp, gke, kubernetes, frontend-config, tls, https, gateway-api]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-frontend-config-http-https-redirect.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-frontend-config-http-https-redirect"
 ---
 
 # GKE FrontendConfig — Auto Redirect HTTP to HTTPS

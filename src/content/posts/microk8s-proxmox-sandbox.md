@@ -4,7 +4,7 @@ description: "3-node MicroK8s cluster on Proxmox VMs for local development."
 date: 2025-06-16
 tags: [kubernetes, microk8s, proxmox, sandbox, devops, local-development]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/k8s/microk8s-proxmox-sandbox.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/k8s/microk8s-proxmox-sandbox"
 ---
 
 # Building a MicroK8s Sandbox Cluster on Proxmox

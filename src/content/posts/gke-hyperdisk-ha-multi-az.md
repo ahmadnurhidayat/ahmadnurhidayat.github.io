@@ -4,7 +4,7 @@ description: "HyperDisk Balanced HA for stateful workloads surviving zone failur
 date: 2025-06-16
 tags: [gcp, gke, kubernetes, hyperdisk, multi-az, storage, statefulset]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-hyperdisk-ha-multi-az.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/gke-hyperdisk-ha-multi-az"
 ---
 
 # HyperDisk Balanced High Availability for Multi-AZ GKE

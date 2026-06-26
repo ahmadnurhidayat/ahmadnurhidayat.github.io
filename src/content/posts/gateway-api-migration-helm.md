@@ -4,7 +4,7 @@ description: "Automate Ingress to Gateway API migration with a Helm chart that c
 date: 2026-06-26
 tags: [kubernetes, gateway-api, helm, networking, gke, migration]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/kubernetes/gateway-api-migration-helm.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/kubernetes/gateway-api-migration-helm"
 ---
 
 Migrating dozens of Ingress resources to Gateway API manually is error-prone. This guide presents a Helm chart that automates the migration — generating HTTPRoutes, HealthCheckPolicies, and GCPBackendPolicies for multiple applications from a single values file.
@@ -44,4 +44,4 @@ apps:
 
 ---
 
-**Read the full guide:** [Gateway API Migration — Helm Chart for Ingress to Gateway API →](https://docs.beyondyou.my.id/docs/01-knowledge-base/kubernetes/gateway-api-migration-helm.md) — includes full Helm chart source code, migration playbook, and rollback procedures.
+**Read the full guide:** [Gateway API Migration — Helm Chart for Ingress to Gateway API →](https://docs.beyondyou.my.id/docs/01-knowledge-base/kubernetes/gateway-api-migration-helm) — includes full Helm chart source code, migration playbook, and rollback procedures.

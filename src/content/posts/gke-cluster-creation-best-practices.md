@@ -4,7 +4,7 @@ description: "Production-grade GKE cluster setup: node pools, security hardening
 date: 2026-06-26
 tags: [gcp, gke, kubernetes, security, networking, infrastructure]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/cloud/gcp/gke-cluster-creation.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/cloud/gcp/gke-cluster-creation"
 ---
 
 Creating a GKE cluster that's production-ready requires more than clicking "Create" in the console. This guide covers the full lifecycle — from cluster sizing and node pool design to security hardening and multi-environment strategy.
@@ -38,4 +38,4 @@ A misconfigured cluster becomes a liability: nodes too small cause OOM kills, mi
 
 ---
 
-**Read the full guide:** [GKE Cluster Creation — Best Practices Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/cloud/gcp/gke-cluster-creation.md) — includes Terraform snippets, cluster upgrade strategies, node pool rollout, and production checklist.
+**Read the full guide:** [GKE Cluster Creation — Best Practices Guide →](https://docs.beyondyou.my.id/docs/01-knowledge-base/cloud/gcp/gke-cluster-creation) — includes Terraform snippets, cluster upgrade strategies, node pool rollout, and production checklist.

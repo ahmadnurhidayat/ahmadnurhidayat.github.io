@@ -4,7 +4,7 @@ description: "Kafbat UI deployment on GKE with YAML and Helm options."
 date: 2025-06-16
 tags: [messaging, kafka, gke, kubernetes, kafka-ui, kafbat, management]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-ui-on-gke.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/messaging/kafka-ui-on-gke"
 ---
 
 # Kafka UI on GKE — Kafbat UI via YAML and Helm

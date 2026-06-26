@@ -4,7 +4,7 @@ description: "Private Service Access and Shared VPC for GKE services."
 date: 2025-06-16
 tags: [gcp, gke, kubernetes, shared-vpc, networking, private-service-access]
 draft: false
-canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/shared-vpc-google-managed-services.md"
+canonicalUrl: "https://docs.beyondyou.my.id/docs/01-knowledge-base/gcp/shared-vpc-google-managed-services"
 ---
 
 # GCP Shared VPC — Private Service Access for Google Managed Services
