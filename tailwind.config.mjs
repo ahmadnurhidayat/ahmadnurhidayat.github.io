@@ -37,9 +37,10 @@ export default {
                 },
             },
             fontFamily: {
-                display: ['Inter', 'system-ui', 'sans-serif'],  // UberMove substitute — weight 700
-                text: ['Inter', 'system-ui', 'sans-serif'],      // UberMoveText substitute — weight 400/500
-                mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
+                display: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                text: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                sans: ['Inter', 'system-ui', 'sans-serif'],
             },
             fontSize: {
                 // Uber display typography scale (weight 700, sentence-case)
@@ -59,11 +60,13 @@ export default {
                 'button-md':   ['16px', { lineHeight: '20px', fontWeight: '500' }],
             },
             borderRadius: {
-                'form': '8px',       // text inputs
-                'card-sm': '12px',   // smaller cards
-                'card': '16px',      // canonical card radius
-                'pill': '999px',     // THE signature shape — every interactive element
-                'pill-tab': '36px',  // tab toggle
+                'xs': '4px',
+                'sm': '6px',
+                'md': '8px',      // buttons, inputs, category tabs
+                'lg': '12px',     // content cards
+                'xl': '16px',     // hero mockup card only
+                'pill': '9999px', // nav-pill-group, badge pills only
+                'full': '50%',    // avatars, icon buttons only
             },
             boxShadow: {
                 'card': '0px 4px 16px 0px rgba(0, 0, 0, 0.12)',

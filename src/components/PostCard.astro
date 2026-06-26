@@ -11,7 +11,7 @@ const { title, description, date, slug, tags = [] } = Astro.props;
 const displayTags = tags.slice(0, 3);
 ---
 
-<a href={`/posts/${slug}`} class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-5 transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600 hover:shadow-card">
+<a href={`/posts/${slug}`} class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg p-5 transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600 hover:shadow-card">
   <article class="flex flex-col h-full">
     <div class="flex items-center justify-between mb-3">
       <time class="text-caption text-ink-light dark:text-neutral-500 font-mono" datetime={date}>
@@ -33,7 +33,7 @@ const displayTags = tags.slice(0, 3);
     {displayTags.length > 0 && (
       <div class="flex flex-wrap gap-1.5 mt-4">
         {displayTags.map((tag) => (
-          <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-pill">
+          <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-md">
             {tag}
           </span>
         ))}

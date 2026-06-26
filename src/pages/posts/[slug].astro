@@ -48,7 +48,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
         {post.data.tags && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag) => (
-              <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-pill">{tag}</span>
+              <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-md">{tag}</span>
             ))}
           </div>
         )}
@@ -62,7 +62,7 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
       prose-h3:text-display-md prose-h3:mt-8 prose-h3:mb-3
       prose-p:text-ink-body dark:prose-p:text-neutral-400
       prose-a:text-black dark:prose-a:text-white prose-a:underline hover:prose-a:opacity-70
-      prose-img:rounded-card
+      prose-img:rounded-lg
       prose-li:text-ink-body dark:prose-li:text-neutral-400
     ">
       <Content />

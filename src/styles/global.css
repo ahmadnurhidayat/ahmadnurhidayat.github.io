@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @layer base {
   html {
@@ -10,7 +10,7 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
     font-weight: 400;
     @apply antialiased bg-white text-black;
     -webkit-font-smoothing: antialiased;
@@ -24,9 +24,10 @@
 
   /* Display face — weight 700 only, sentence-case, never letter-spaced */
   h1, h2, h3, h4 {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
     font-weight: 700;
     @apply text-black dark:text-white;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
   }
 
   a {
@@ -52,48 +53,48 @@
 }
 
 @layer components {
-  /* ─── Pill Buttons — THE signature shape ─── */
+  /* ─── Buttons — 8px radius (DESIGN.md: rounded.md) ─── */
 
-  /* Primary: black pill, white text — the only conversion CTA */
+  /* Primary: black button, white text — the only conversion CTA */
   .btn-primary {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-black text-white rounded-pill;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-black text-white rounded-md;
     @apply transition-all duration-250;
     @apply hover:bg-primary-elevated active:scale-[0.97];
     @apply dark:bg-white dark:text-black dark:hover:bg-neutral-200;
   }
 
-  /* Secondary: white pill, black text */
+  /* Secondary: white button, black text */
   .btn-secondary {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-black rounded-pill;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-black rounded-md;
     @apply transition-all duration-250;
     @apply hover:bg-canvas-soft active:scale-[0.97];
     @apply dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700;
   }
 
-  /* Subtle: gray pill — tertiary actions */
+  /* Subtle: gray button — tertiary actions */
   .btn-subtle {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
     font-weight: 500;
     line-height: 16px;
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-canvas-soft text-black rounded-pill;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-canvas-soft text-black rounded-md;
     @apply transition-all duration-250;
     @apply hover:bg-neutral-200 active:scale-[0.97];
     @apply dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700;
   }
 
-  /* ─── Cards — 16px radius, flat by default ─── */
+  /* ─── Cards — 12px radius (DESIGN.md: rounded.lg) ─── */
 
   .card {
-    @apply bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-6;
+    @apply bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg p-6;
     @apply transition-all duration-250;
   }
 
@@ -102,14 +103,15 @@
   }
 
   .card-on-dark {
-    @apply bg-black text-white dark:bg-neutral-900 rounded-card p-6;
+    @apply bg-black text-white dark:bg-neutral-900 rounded-lg p-6;
     @apply transition-all duration-250;
   }
 
   /* ─── Nav ─── */
 
   .nav-link {
-    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
     font-weight: 500;
     line-height: 20px;
     @apply text-black dark:text-white hover:opacity-70 transition-opacity duration-250;
