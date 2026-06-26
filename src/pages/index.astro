@@ -1,7 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostCard from '../components/PostCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
@@ -14,205 +12,186 @@ const allProjects = (await getCollection('projects', ({ data }) => !data.draft))
     return parseInt(b.data.year) - parseInt(a.data.year);
   });
 
-const featuredPosts = allPosts.slice(0, 4);
-const featuredProjects = allProjects.slice(0, 3);
+const recentPosts = allPosts.slice(0, 6);
 ---
 
 <BaseLayout>
-  <!-- ─── Hero Band ─── -->
-  <section class="relative min-h-[calc(100vh-5rem)] flex items-center bg-white dark:bg-black overflow-hidden bg-grid-pattern">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-8 w-full py-12 lg:py-0">
+  <!-- Hero — terminal aesthetic -->
+  <section class="min-h-[calc(100vh-3.5rem)] flex items-center bg-white dark:bg-black">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-8 w-full py-16">
+      <div class="space-y-8">
+        <!-- Terminal prompt -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-ink-light dark:text-neutral-500">
+            <span class="text-interactive dark:text-interactive">$</span>
+            <span class="text-[13px]">whoami</span>
+          </div>
+          <h1 class="text-[28px] md:text-[36px] font-bold leading-tight text-black dark:text-white">
+            Ahmad Nurhidayat
+          </h1>
+        </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <!-- Left: text content -->
-        <div class="space-y-8 animate-fade-in order-2 lg:order-1">
-          <div>
-            <h1 class="text-display-xxl text-black dark:text-white leading-[1.15]">
-              Go anywhere with your infrastructure<span class="text-ink-light dark:text-neutral-600">.</span>
-            </h1>
-            <p class="mt-6 text-body-lg text-ink-body dark:text-neutral-400 max-w-lg leading-relaxed">
-              I design, build, and operate cloud infrastructure that scales — from Kubernetes clusters to CI/CD pipelines and observability stacks.
+        <!-- Role -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-ink-light dark:text-neutral-500">
+            <span class="text-interactive dark:text-interactive">$</span>
+            <span class="text-[13px]">cat role.txt</span>
+          </div>
+          <p class="text-[15px] text-ink-body dark:text-neutral-400 max-w-lg">
+            Cloud & DevOps Engineer building resilient infrastructure — Kubernetes clusters,
+            CI/CD pipelines, observability stacks, and platform engineering.
+          </p>
+        </div>
+
+        <!-- Tech stack as tags -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-ink-light dark:text-neutral-500">
+            <span class="text-interactive dark:text-interactive">$</span>
+            <span class="text-[13px]">ls stack/</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {['GCP', 'AWS', 'Kubernetes', 'Terraform', 'ArgoCD', 'Prometheus', 'Grafana', 'GitHub Actions'].map(tech => (
+              <span class="text-[12px] font-medium bg-canvas-soft dark:bg-neutral-900 text-ink-mute dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 px-2.5 py-1 rounded-pill">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex items-center gap-8 pt-4">
+          <div class="text-center">
+            <div class="text-[20px] font-bold text-black dark:text-white">{allPosts.length}</div>
+            <div class="text-[11px] text-ink-light dark:text-neutral-500 uppercase tracking-wider">Posts</div>
+          </div>
+          <div class="text-center">
+            <div class="text-[20px] font-bold text-black dark:text-white">{allProjects.length}</div>
+            <div class="text-[11px] text-ink-light dark:text-neutral-500 uppercase tracking-wider">Projects</div>
+          </div>
+          <div class="text-center">
+            <div class="text-[20px] font-bold text-black dark:text-white">50+</div>
+            <div class="text-[11px] text-ink-light dark:text-neutral-500 uppercase tracking-wider">Guides</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-3 pt-2">
+          <a href="/posts" class="btn-primary text-[13px]">
+            ~/posts
+          </a>
+          <a href="/projects" class="btn-subtle text-[13px]">
+            ~/projects
+          </a>
+          <a href="https://docs.beyondyou.my.id" target="_blank" rel="noopener" class="btn-subtle text-[13px]">
+            ~/docs
+            <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Posts — compact list -->
+  <section class="bg-white dark:bg-black border-t border-neutral-100 dark:border-neutral-800">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-8 py-16">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-[11px] font-medium text-ink-light dark:text-neutral-500 uppercase tracking-widest">Latest</span>
+          <h2 class="text-[18px] font-bold text-black dark:text-white mt-1">Posts</h2>
+        </div>
+        <a href="/posts" class="text-[13px] text-ink-mute dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors duration-200">
+          view all &rarr;
+        </a>
+      </div>
+
+      <div class="space-y-0">
+        {recentPosts.map((post) => (
+          <a
+            href={`/posts/${post.id.replace(/\.md$/, '')}`}
+            class="group flex items-start gap-4 py-3 border-b border-neutral-100 dark:border-neutral-800 last:border-0 hover:bg-canvas-soft dark:hover:bg-neutral-900 -mx-2 px-2 rounded transition-colors duration-200"
+          >
+            <time class="text-[12px] text-ink-light dark:text-neutral-500 font-mono mt-0.5 shrink-0 w-20" datetime={post.data.date.toISOString()}>
+              {new Date(post.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </time>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-[14px] font-medium text-black dark:text-white group-hover:opacity-70 transition-opacity duration-200 truncate">
+                {post.data.title}
+              </h3>
+              <p class="text-[12px] text-ink-light dark:text-neutral-500 mt-0.5 truncate">
+                {post.data.description}
+              </p>
+            </div>
+            <svg class="w-4 h-4 text-ink-light dark:text-neutral-600 group-hover:text-black dark:group-hover:text-white shrink-0 mt-0.5 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects — compact grid -->
+  <section class="bg-canvas-soft dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-800">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-8 py-16">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-[11px] font-medium text-ink-light dark:text-neutral-500 uppercase tracking-widest">Featured</span>
+          <h2 class="text-[18px] font-bold text-black dark:text-white mt-1">Projects</h2>
+        </div>
+        <a href="/projects" class="text-[13px] text-ink-mute dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors duration-200">
+          view all &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {allProjects.slice(0, 4).map((project) => (
+          <a
+            href={`/projects/${project.id.replace(/\.md$/, '')}`}
+            class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-4 transition-all duration-200 hover:border-neutral-300 dark:hover:border-neutral-600"
+          >
+            <div class="flex items-start justify-between">
+              <h3 class="text-[14px] font-medium text-black dark:text-white group-hover:opacity-70 transition-opacity duration-200">
+                {project.data.title}
+              </h3>
+              <span class="text-[11px] text-ink-light dark:text-neutral-500 font-mono shrink-0 ml-2">
+                {project.data.year}
+              </span>
+            </div>
+            <p class="text-[12px] text-ink-light dark:text-neutral-500 mt-1 line-clamp-2">
+              {project.data.description}
             </p>
-          </div>
-
-          <!-- Role highlights -->
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span class="w-2 h-2 rounded-full bg-interactive flex-shrink-0"></span>
-              <span class="text-body-md-strong text-black dark:text-white">Cloud & DevOps Engineer</span>
-              <span class="text-body-sm text-ink-light dark:text-neutral-500">· Based in Yogyakarta, Indonesia</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="w-2 h-2 rounded-full bg-interactive flex-shrink-0"></span>
-              <span class="text-body-md text-black dark:text-white">3+ years experience</span>
-              <span class="text-body-sm text-ink-light dark:text-neutral-500">· GCP, AWS, Kubernetes, Terraform</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="w-2 h-2 rounded-full bg-interactive flex-shrink-0"></span>
-              <span class="text-body-md text-black dark:text-white">Platform engineering</span>
-              <span class="text-body-sm text-ink-light dark:text-neutral-500">· ArgoCD, Crossplane, Backstage</span>
-            </div>
-          </div>
-
-          <!-- Stats + CTA row -->
-          <div class="flex items-center gap-6 flex-wrap">
-            <a href="/about" class="btn-primary">
-              View full profile
-            </a>
-            <a href="/projects" class="btn-subtle">
-              See my work
-            </a>
-            <div class="hidden sm:flex items-center gap-6 pl-4 border-l border-neutral-200 dark:border-neutral-800">
-              <div>
-                <div class="text-display-sm text-black dark:text-white">{allPosts.length}</div>
-                <div class="text-caption text-ink-mute dark:text-neutral-500">Articles</div>
+            {project.data.tags && (
+              <div class="flex flex-wrap gap-1 mt-2">
+                {project.data.tags.slice(0, 3).map(tag => (
+                  <span class="text-[10px] font-medium text-ink-light dark:text-neutral-500 bg-canvas-soft dark:bg-neutral-800 px-2 py-0.5 rounded-pill">
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div>
-                <div class="text-display-sm text-black dark:text-white">{allProjects.length}</div>
-                <div class="text-caption text-ink-mute dark:text-neutral-500">Projects</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: large avatar -->
-        <div class="flex justify-center order-1 lg:order-2">
-          <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[30rem] lg:h-[30rem]">
-            <!-- Decorative blur circle -->
-            <div class="absolute inset-0 bg-interactive-light dark:bg-interactive/10 rounded-full blur-3xl opacity-60"></div>
-            <img
-              src="/avatar.png"
-              alt="Ahmad Nurhidayat"
-              class="relative w-full h-full object-contain z-10"
-              onerror="this.style.display='none'"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span class="text-caption text-ink-light dark:text-neutral-500 uppercase tracking-widest">View my work</span>
-        <svg class="w-4 h-4 text-ink-light dark:text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Projects Section — white band ─── -->
-  <section class="bg-white dark:bg-black py-20">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
-      <div class="flex items-end justify-between mb-12">
-        <div>
-          <h2 class="text-display-xl text-black dark:text-white">
-            Projects I&rsquo;ve shipped<span class="text-ink-light dark:text-neutral-600">.</span>
-          </h2>
-          <p class="mt-2 text-body-md text-ink-body dark:text-neutral-400">
-            Recent work and hands-on lab series.
-          </p>
-        </div>
-        <a href="/projects" class="hidden md:inline-flex btn-primary">
-          View all
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredProjects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            year={project.data.year}
-            slug={project.id.replace(/\.md$/, '')}
-            image={project.data.image}
-            pinned={project.data.pinned}
-            tags={project.data.tags}
-            link={project.data.link}
-          />
+            )}
+          </a>
         ))}
       </div>
-
-      <div class="mt-8 text-center md:hidden">
-        <a href="/projects" class="btn-primary">View all projects</a>
-      </div>
     </div>
   </section>
 
-  <!-- ─── BLACK PROMO BAND — polarity flip, mid-page ─── -->
-  <section class="bg-black dark:bg-neutral-950 py-20">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <!-- Docs CTA -->
+  <section class="bg-black dark:bg-neutral-950 border-t border-white/10">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-8 py-16">
+      <div class="flex items-start gap-4">
+        <span class="text-interactive text-[18px] mt-1">&gt;_</span>
         <div>
-          <h2 class="text-display-xl text-white">
-            Deep-dive docs<span class="text-neutral-500">.</span>
-          </h2>
-          <p class="mt-3 text-body-lg text-on-dark-muted dark:text-neutral-400 max-w-md">
-            50+ technical guides on cloud architecture, Kubernetes internals, CI/CD patterns, and platform engineering — all at docs.beyondyou.my.id.
+          <h2 class="text-[18px] font-bold text-white">Documentation</h2>
+          <p class="text-[13px] text-on-dark-muted dark:text-neutral-400 mt-2 max-w-md">
+            50+ technical guides on Kubernetes, cloud architecture, CI/CD, and platform engineering.
           </p>
-          <div class="flex flex-wrap gap-3 mt-8">
-            <a href="https://docs.beyondyou.my.id" target="_blank" rel="noopener" class="btn-secondary">
-              Explore documentation
-            </a>
-            <a href="/posts" class="bg-transparent text-white border border-white/20 hover:border-white/40 rounded-pill px-5 py-3 text-sm font-medium transition-all duration-250 active:scale-[0.97]">
-              Browse all posts &rarr;
+          <div class="flex gap-3 mt-6">
+            <a href="https://docs.beyondyou.my.id" target="_blank" rel="noopener" class="btn-secondary text-[13px]">
+              Open docs
+              <svg class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
           </div>
         </div>
-
-        <!-- Feature highlights on dark -->
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-white/5 dark:bg-neutral-800/50 rounded-card p-5 hover:bg-white/10 transition-colors duration-250">
-            <div class="text-display-sm text-white mb-2">Kubernetes</div>
-            <div class="text-body-sm text-on-dark-muted dark:text-neutral-400">Control plane, CNI, CSI, PDBs, and production patterns</div>
-          </div>
-          <div class="bg-white/5 dark:bg-neutral-800/50 rounded-card p-5 hover:bg-white/10 transition-colors duration-250">
-            <div class="text-display-sm text-white mb-2">AWS</div>
-            <div class="text-body-sm text-on-dark-muted dark:text-neutral-400">PrivateLink, Landing Zones, FinOps, Well-Architected</div>
-          </div>
-          <div class="bg-white/5 dark:bg-neutral-800/50 rounded-card p-5 hover:bg-white/10 transition-colors duration-250">
-            <div class="text-display-sm text-white mb-2">CI/CD</div>
-            <div class="text-body-sm text-on-dark-muted dark:text-neutral-400">GitHub Actions, GitOps, Blue/Green, DORA metrics</div>
-          </div>
-          <div class="bg-white/5 dark:bg-neutral-800/50 rounded-card p-5 hover:bg-white/10 transition-colors duration-250">
-            <div class="text-display-sm text-white mb-2">Platform</div>
-            <div class="text-body-sm text-on-dark-muted dark:text-neutral-400">15-lab IDP series with Backstage, ArgoCD, Crossplane</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Posts Section — white band ─── -->
-  <section class="bg-canvas-soft dark:bg-neutral-950 py-20">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
-      <div class="flex items-end justify-between mb-12">
-        <div>
-          <h2 class="text-display-xl text-black dark:text-white">
-            Recent posts<span class="text-ink-light dark:text-neutral-600">.</span>
-          </h2>
-          <p class="mt-2 text-body-md text-ink-body dark:text-neutral-400">
-            Deep dives, tutorials, and guides on cloud infrastructure & DevOps.
-          </p>
-        </div>
-        <a href="/posts" class="hidden md:inline-flex btn-primary">
-          Browse all {allPosts.length} posts
-        </a>
-      </div>
-
-      <div class="grid gap-4">
-        {featuredPosts.map((post) => (
-          <PostCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date.toISOString()}
-            slug={post.id.replace(/\.md$/, '')}
-            tags={post.data.tags}
-          />
-        ))}
-      </div>
-
-      <div class="mt-8 text-center md:hidden">
-        <a href="/posts" class="btn-primary">Browse all posts</a>
       </div>
     </div>
   </section>

@@ -37,9 +37,10 @@ export default {
                 },
             },
             fontFamily: {
-                display: ['Inter', 'system-ui', 'sans-serif'],  // UberMove substitute — weight 700
-                text: ['Inter', 'system-ui', 'sans-serif'],      // UberMoveText substitute — weight 400/500
-                mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
+                display: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                text: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+                sans: ['Inter', 'system-ui', 'sans-serif'],
             },
             fontSize: {
                 // Uber display typography scale (weight 700, sentence-case)
