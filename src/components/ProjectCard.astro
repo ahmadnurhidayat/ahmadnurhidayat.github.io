@@ -15,7 +15,7 @@ const hasImage = image && image.length > 0;
 const displayTags = tags.slice(0, 4);
 ---
 
-<a href={`/projects/${slug}`} class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card overflow-hidden transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600">
+<a href={`/projects/${slug}`} class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg overflow-hidden transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600">
   <!-- Image — 4:3 editorial illustration pattern -->
   <div class="relative h-48 overflow-hidden bg-canvas-soft dark:bg-neutral-800">
     {hasImage ? (
@@ -33,7 +33,7 @@ const displayTags = tags.slice(0, 4);
     )}
 
     {pinned && (
-      <span class="absolute top-3 right-3 text-[11px] font-bold bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 rounded-pill shadow-card">
+      <span class="absolute top-3 right-3 text-[11px] font-bold bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 rounded-md shadow-card">
         Pinned
       </span>
     )}
@@ -63,7 +63,7 @@ const displayTags = tags.slice(0, 4);
     {displayTags.length > 0 && (
       <div class="flex flex-wrap gap-2 mt-3">
         {displayTags.map((tag) => (
-          <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-pill">
+          <span class="text-[11px] font-medium bg-canvas-soft dark:bg-neutral-800 text-ink-mute dark:text-neutral-400 px-2.5 py-1 rounded-md">
             {tag}
           </span>
         ))}

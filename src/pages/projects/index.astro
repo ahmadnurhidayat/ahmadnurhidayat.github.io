@@ -24,7 +24,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
       {projects.map((project, index) => (
         <a
           href={`/projects/${project.id.replace(/\.md$/, '')}`}
-          class={`group flex flex-col md:flex-row gap-6 bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card overflow-hidden transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600 ${
+          class={`group flex flex-col md:flex-row gap-6 bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg overflow-hidden transition-all duration-250 hover:border-neutral-300 dark:hover:border-neutral-600 ${
             index % 2 === 1 ? 'md:flex-row-reverse' : ''
           }`}
         >
@@ -44,7 +44,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
               </div>
             )}
             {project.data.pinned && (
-              <span class="absolute top-3 right-3 text-[11px] font-bold bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 rounded-pill shadow-card">
+              <span class="absolute top-3 right-3 text-[11px] font-bold bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 rounded-md shadow-card">
                 Pinned
               </span>
             )}

@@ -60,11 +60,13 @@ export default {
                 'button-md':   ['16px', { lineHeight: '20px', fontWeight: '500' }],
             },
             borderRadius: {
-                'form': '8px',       // text inputs
-                'card-sm': '12px',   // smaller cards
-                'card': '16px',      // canonical card radius
-                'pill': '999px',     // THE signature shape — every interactive element
-                'pill-tab': '36px',  // tab toggle
+                'xs': '4px',
+                'sm': '6px',
+                'md': '8px',      // buttons, inputs, category tabs
+                'lg': '12px',     // content cards
+                'xl': '16px',     // hero mockup card only
+                'pill': '9999px', // nav-pill-group, badge pills only
+                'full': '50%',    // avatars, icon buttons only
             },
             boxShadow: {
                 'card': '0px 4px 16px 0px rgba(0, 0, 0, 0.12)',

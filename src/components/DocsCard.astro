@@ -33,12 +33,12 @@ const badgeColor = categoryBgMap[categoryColor] ?? 'bg-primary-100 dark:bg-prima
   href={`${DOCS_BASE_URL}/docs/${slug}`}
   target="_blank"
   rel="noopener"
-  class={`group block bg-white dark:bg-surface/30 border border-gray-200 dark:border-border/40 rounded-xl p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg ${borderColor}`}
+  class={`group block bg-white dark:bg-surface/30 border border-gray-200 dark:border-border/40 rounded-lg p-5 transition-all duration-200 hover:border-primary-600/50 dark:hover:border-accent/50 hover:shadow-lg ${borderColor}`}
 >
   <article class="flex flex-col h-full">
     <!-- Top row: category badge + external link icon -->
     <div class="flex items-center justify-between mb-3">
-      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badgeColor}`}>
+      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium ${badgeColor}`}>
         {category}
       </span>
       <svg

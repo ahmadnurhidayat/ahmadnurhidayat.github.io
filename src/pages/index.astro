@@ -53,7 +53,7 @@ const recentPosts = allPosts.slice(0, 6);
           </div>
           <div class="flex flex-wrap gap-2">
             {['GCP', 'AWS', 'Kubernetes', 'Terraform', 'ArgoCD', 'Prometheus', 'Grafana', 'GitHub Actions'].map(tech => (
-              <span class="text-[12px] font-medium bg-canvas-soft dark:bg-neutral-900 text-ink-mute dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 px-2.5 py-1 rounded-pill">
+              <span class="text-[12px] font-medium bg-canvas-soft dark:bg-neutral-900 text-ink-mute dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800 px-2.5 py-1 rounded-md">
                 {tech}
               </span>
             ))}
@@ -156,7 +156,7 @@ const recentPosts = allPosts.slice(0, 6);
         {allProjects.slice(0, 4).map((project) => (
           <a
             href={`/projects/${project.id.replace(/\.md$/, '')}`}
-            class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-card p-4 transition-all duration-200 hover:border-neutral-300 dark:hover:border-neutral-600"
+            class="group block bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg p-4 transition-all duration-200 hover:border-neutral-300 dark:hover:border-neutral-600"
           >
             <div class="flex items-start justify-between">
               <h3 class="text-[14px] font-medium text-black dark:text-white group-hover:opacity-70 transition-opacity duration-200">
@@ -172,7 +172,7 @@ const recentPosts = allPosts.slice(0, 6);
             {project.data.tags && (
               <div class="flex flex-wrap gap-1 mt-2">
                 {project.data.tags.slice(0, 3).map(tag => (
-                  <span class="text-[10px] font-medium text-ink-light dark:text-neutral-500 bg-canvas-soft dark:bg-neutral-800 px-2 py-0.5 rounded-pill">
+                  <span class="text-[10px] font-medium text-ink-light dark:text-neutral-500 bg-canvas-soft dark:bg-neutral-800 px-2 py-0.5 rounded-md">
                     {tag}
                   </span>
                 ))}
